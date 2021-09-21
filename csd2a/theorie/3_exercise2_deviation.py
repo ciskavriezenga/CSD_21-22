@@ -9,16 +9,15 @@ import time
 
 
 # ___ retrieve all necessary values and lists necessary for playing rhythm ___
-
 # retrieve note durations and bpm from input
-num_notes = input()
+num_notes = input("Enter num notes\n")
 note_durations = list()
 
 for i in range(int(num_notes)):
-    note_durations.append(float(input()))
+    note_durations.append(float(input("Enter note duration\n")))
 
 print("note_durations:", note_durations)
-bpm = float(input())
+bpm = float(input("Enter BPM\n"))
 quarternote_dur = 60.0 / bpm
 print("bpm:", bpm, "quarternote_dur", quarternote_dur)
 
@@ -29,19 +28,22 @@ for note_dur in note_durations:
 
 print("time_durations", time_durations)
 
-
 # ___ play rhythm ___
-
 # load a sample
 sample_pop = sa.WaveObject.from_wave_file("./assets/Pop.wav")
 
+# retrieve current time to store as t = 0
 time_zero = time.time()
-time_accumulated = 0
+# allow to calcultate time duration sum according to time durations
+time_sum = 0
 # play rhythm
 for time_dur in time_durations:
-    time_cur = time.time() - time_zero
-    time_deviation = time_cur - time_accumulated
+    # calculate time deviation
+    time_now = time.time() - time_zero
+    time_deviation = time_now - time_sum
     print("time_deviation:", time_deviation)
+    # play sample and pause according to time duration
     sample_pop.play()
     time.sleep(time_dur)
-    time_accumulated = time_accumulated + time_dur
+    # update time sum
+    time_sum = time_sum + time_dur
