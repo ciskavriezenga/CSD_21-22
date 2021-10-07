@@ -1,6 +1,6 @@
 """
-This Python script contains an example that shows how can use functions
-to generate lists with dictionary.
+In this example the usage of functions to generate a list with dictionaries is
+demonstrated.
 """
 
 import random
