@@ -1,5 +1,6 @@
 from midiutil import MIDIFile #   https://pypi.org/project/MIDIUtil
 import random
+import numpy as np
 
 
 # _________ split function based on midpoint displacement algorithm _________
@@ -9,7 +10,9 @@ def split_note(notes, index, random_range):
 
     # calculate new duration for the note and
     # the rest duration value for the new note
-    split_amount = random.choice([0.5, 0.25, 0.125])
+    # for reference of the numpy.random.choice function see:
+    # https://numpy.org/doc/stable/reference/random/generated/numpy.random.choice.html
+    split_amount = np.random.choice([0.5, 0.25, 0.125], p =[0.45, 0.45, 0.1])
     dur = notes[index]["qnote_dur"]
     new_dur = dur * split_amount
     rest_dur = dur - new_dur
