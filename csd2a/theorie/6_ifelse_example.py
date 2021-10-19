@@ -5,7 +5,7 @@ If the condition of the first if statement is true,
 python will skip the following else if statements.
 
 ------ EXERCISES ------
-- See for yourself this indeed is the case. Change the 'snare' string in the
+- See for yourself that this is indeed the case. Change the 'snare' string in the
     first elif statement to 'kick'.
     Now run the program and enter 'kick'.
     The string "you selected the snare" is not printed to the console!
