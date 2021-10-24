@@ -18,10 +18,7 @@ velocity=80
 track = 0
 channel = 0
 bpm = 120
-"""# calculate the duration of a quarter note to be able to work with rests at
-# the beginning
-qnote_dur = 60 / bpm
-"""
+
 # create the MIDIfile object, to which we can add notes
 mf = MIDIFile(1)
 # set name and tempo
@@ -35,7 +32,7 @@ mf.addTempo(track, time, bpm)
 
 # ___ add the kick durations to the note
 # set the time to kick offset in case the kick does not start at the beginning
-time = kick_qnote_offset #* qnote_dur
+time = kick_qnote_offset
 
 # add the notes for the kick
 # TODO - possibly use drum channel (10?) and correct pitch for kick?
@@ -48,7 +45,7 @@ for dur in kick_note_durations:
 
 # ___ add the kick durations to the note
 # reset the time to snare offset in case the snare does not start at the beginning
-time = kick_qnote_offset #* qnote_dur
+time = kick_qnote_offset 
 # add the notes for the snare
 # TODO - possibly use drum channel (10?) and correct pitch for snare?
 snare_midi_pitch = 67
