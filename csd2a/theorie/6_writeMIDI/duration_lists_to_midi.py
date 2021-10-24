@@ -22,8 +22,9 @@ bpm = 120
 # create the MIDIfile object, to which we can add notes
 mf = MIDIFile(1)
 # set name and tempo
-mf.addTrackName(track, time, "Beat Sample Track")
-mf.addTempo(track, time, bpm)
+time_beginning = 0
+mf.addTrackName(track, time_beginning, "Beat Sample Track")
+mf.addTempo(track, time_beginning, bpm)
 
 
 
@@ -45,7 +46,7 @@ for dur in kick_note_durations:
 
 # ___ add the kick durations to the note
 # reset the time to snare offset in case the snare does not start at the beginning
-time = kick_qnote_offset 
+time = snare_qnote_offset
 # add the notes for the snare
 # TODO - possibly use drum channel (10?) and correct pitch for snare?
 snare_midi_pitch = 67
