@@ -36,7 +36,6 @@ mf.addTempo(track, time_beginning, bpm)
 time = kick_qnote_offset
 
 # add the notes for the kick
-# TODO - possibly use drum channel (10?) and correct pitch for kick?
 kick_midi_pitch = 35
 for dur in kick_note_durations:
     mf.addNote(track, channel, kick_midi_pitch, time, dur, velocity)
@@ -48,7 +47,6 @@ for dur in kick_note_durations:
 # reset the time to snare offset in case the snare does not start at the beginning
 time = snare_qnote_offset
 # add the notes for the snare
-# TODO - possibly use drum channel (10?) and correct pitch for snare?
 snare_midi_pitch = 38
 for dur in snare_note_durations:
     mf.addNote(track, channel, snare_midi_pitch, time, dur, velocity)
