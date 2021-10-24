@@ -35,7 +35,7 @@ events = [
 # set the necessary values for MIDI util
 velocity=80
 track = 0
-channel = 0
+channel = 9 # corresponds to channel 10 drums
 bpm = 120
 
 
@@ -48,10 +48,9 @@ mf.addTempo(track, time_beginning, bpm)
 
 # variables necessary for transforming events to midi output
 qnote_dur = 60 / bpm
-# TODO - possibly use drum channel (10?) and correct pitch for kick / snare?
 instr_midi_pitch = {
-    "kick": 60,
-    "snare": 72
+    "kick": 35,
+    "snare": 38
 }
 
 
