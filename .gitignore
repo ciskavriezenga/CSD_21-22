@@ -131,6 +131,9 @@ dmypy.json
 # rstudio
 *.Rhistory
 
+# midi
+*.midi
+*.mid
 
 *example
 # Cpp
