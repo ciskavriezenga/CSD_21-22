@@ -30,7 +30,7 @@ public:
 // ____________________ CoffeeMaker class implementation ____________________
 
 CoffeeMaker::CoffeeMaker(std::string type, std::string brand, float necessaryCoffeeAmount) {
-  std::cout << "Inside CoffeeMaker constructor\n";
+  std::cout << "• Inside CoffeeMaker constructor\n";
   // Explenation "the this pointer"
   // we need the this-pointer, to indicate which type and brand is which:
   // the parameter type and brand or the fields type and brand
@@ -43,23 +43,31 @@ CoffeeMaker::CoffeeMaker(std::string type, std::string brand, float necessaryCof
 }
 
 CoffeeMaker::~CoffeeMaker() {
-  std::cout << "Inside CoffeeMaker destructor\n";
+  std::cout << "• Inside CoffeeMaker destructor\n";
 }
 
 void CoffeeMaker::addCoffee(float coffeeAmount) {
-  std::cout << "Inside CoffeeMaker addCoffee\n";
-  // TODO - write method body
+  // TODO make sure it does not overflow by using necessaryCoffeeAmount
+  std::cout << "• Inside CoffeeMaker addCoffee\n";
+  if (currentCoffeeAmount + coffeeAmount < necessaryCoffeeAmount) {
+    currentCoffeeAmount += coffeeAmount;
+    std::cout << "We added some coffee to the coffeemaker\n"
+              << "Now, the current coffee amount is: "
+              << currentCoffeeAmount << "\n";
+
+  } else {
+    std::cout << "HELP - this is too much coffee! We didn't add it.\n";
+  }
 }
 
 bool CoffeeMaker::isFilled() {
-  // TODO make sure it does not overflow by using necessaryCoffeeAmount
-  std::cout << "Inside CoffeeMaker isFilled\n";
+  std::cout << "• Inside CoffeeMaker isFilled\n";
   // TODO - write method body
   return false;
 }
 
 bool CoffeeMaker::brew() {
-  std::cout << "Inside CoffeeMaker brew\n";
+  std::cout << "• Inside CoffeeMaker brew\n";
   //TODO  add check if the currentCoffeeAmount is large enough
   //      and then maybe post the strenght of a coffee, using a switch?
   // TODO - write method body
@@ -71,7 +79,9 @@ bool CoffeeMaker::brew() {
 int main() {
   // create CoffeeMaker object and call all its functions
   CoffeeMaker coffeeMaker("Moka pot", "Forever", 17);
-  coffeeMaker.addCoffee(1.1);
+  coffeeMaker.addCoffee(16.1);
+  // call it again, add too much
+  coffeeMaker.addCoffee(1.0);
   coffeeMaker.isFilled();
   coffeeMaker.brew();
 
