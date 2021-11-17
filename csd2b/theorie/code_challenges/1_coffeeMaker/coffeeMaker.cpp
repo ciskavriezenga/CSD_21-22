@@ -47,8 +47,8 @@ CoffeeMaker::~CoffeeMaker() {
 }
 
 void CoffeeMaker::addCoffee(float coffeeAmount) {
-  // TODO make sure it does not overflow by using necessaryCoffeeAmount
   std::cout << "• Inside CoffeeMaker addCoffee\n";
+  // make sure it does not overflow
   if (currentCoffeeAmount + coffeeAmount < necessaryCoffeeAmount) {
     currentCoffeeAmount += coffeeAmount;
     std::cout << "We added some coffee to the coffeemaker\n"
@@ -70,11 +70,21 @@ bool CoffeeMaker::isFilled() {
 }
 
 bool CoffeeMaker::brew() {
+  // check if we can actuall brew coffee and what the result will be
   std::cout << "• Inside CoffeeMaker brew\n";
-  // TODO  add check if the currentCoffeeAmount is large enough
-  //      and then maybe post the strenght of a coffee, using a switch?
-  // TODO - write method body
-  return false;
+  if (currentCoffeeAmount < necessaryCoffeeAmount * 0.5) {
+    std::cout << "Currently brewing some very weak stuff\n";
+  } else if (currentCoffeeAmount < necessaryCoffeeAmount * 0.95) {
+    std::cout << "Currently brewing some weak coffee\n";
+  } else if (currentCoffeeAmount < necessaryCoffeeAmount * 1.0) {
+    std::cout << "Currently brewing a perfect batch of coffee!\n";
+  } else {
+    std::cout << "we can not close the coffeeMaker, "
+              << "somehow, there is too much coffee inside it ...\n";
+    return false;
+  }
+
+  return true;
 }
 
 
@@ -82,9 +92,9 @@ bool CoffeeMaker::brew() {
 int main() {
   // create CoffeeMaker object and call all its functions
   CoffeeMaker coffeeMaker("Moka pot", "Forever", 17);
-  coffeeMaker.addCoffee(16.1);
+  coffeeMaker.addCoffee(16.7);
   // call it again, add too much
-  coffeeMaker.addCoffee(1.0);
+  coffeeMaker.addCoffee(0.4);
 
   if(coffeeMaker.isFilled()) {
     std::cout << "There is enough coffee inside the coffeemaker.\n"
@@ -94,7 +104,15 @@ int main() {
               << "We can start brewing, however, it will taste terrible.\n";
   }
 
-  coffeeMaker.brew();
+  // example of what you do not want to do:
+  // altering currentCoffeeAmount from outside the class
+  coffeeMaker.currentCoffeeAmount = 10000;
+
+  if(coffeeMaker.brew()) {
+    std::cout << "Coffee is ready\n";
+  } else {
+    std::cout << "Brewing coffee failed\n";
+  }
 
   // end program
   return 0;
