@@ -5,7 +5,7 @@
 class CoffeeMaker
 {
 public:
-  CoffeeMaker();
+  CoffeeMaker(std::string type, std::string brand, float necessaryCoffeeAmount);
   ~CoffeeMaker();
 
   //___ fields ___
@@ -29,9 +29,17 @@ public:
 
 // ____________________ CoffeeMaker class implementation ____________________
 
-CoffeeMaker::CoffeeMaker() {
+CoffeeMaker::CoffeeMaker(std::string type, std::string brand, float necessaryCoffeeAmount) {
   std::cout << "Inside CoffeeMaker constructor\n";
-  // TODO - add parameters and initilize values, some based on these parameters
+  // Explenation "the this pointer"
+  // we need the this-pointer, to indicate which type and brand is which:
+  // the parameter type and brand or the fields type and brand
+  // by using the this pointer (this->) we refer to the fields of the class.
+  this->type = type;
+  this->brand = brand;
+  this->necessaryCoffeeAmount = necessaryCoffeeAmount;
+  currentCoffeeAmount = 0;
+
 }
 
 CoffeeMaker::~CoffeeMaker() {
@@ -62,7 +70,7 @@ bool CoffeeMaker::brew() {
 // ____________________ main ____________________
 int main() {
   // create CoffeeMaker object and call all its functions
-  CoffeeMaker coffeeMaker;
+  CoffeeMaker coffeeMaker("Moka pot", "Forever", 17);
   coffeeMaker.addCoffee(1.1);
   coffeeMaker.isFilled();
   coffeeMaker.brew();
