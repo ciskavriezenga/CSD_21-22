@@ -62,13 +62,16 @@ void CoffeeMaker::addCoffee(float coffeeAmount) {
 
 bool CoffeeMaker::isFilled() {
   std::cout << "• Inside CoffeeMaker isFilled\n";
-  // TODO - write method body
+  // we interpreted filled as the coffee amount filled for [95%, 100%]
+  if (currentCoffeeAmount > necessaryCoffeeAmount * 0.95) {
+    return true;
+  }
   return false;
 }
 
 bool CoffeeMaker::brew() {
   std::cout << "• Inside CoffeeMaker brew\n";
-  //TODO  add check if the currentCoffeeAmount is large enough
+  // TODO  add check if the currentCoffeeAmount is large enough
   //      and then maybe post the strenght of a coffee, using a switch?
   // TODO - write method body
   return false;
@@ -82,7 +85,15 @@ int main() {
   coffeeMaker.addCoffee(16.1);
   // call it again, add too much
   coffeeMaker.addCoffee(1.0);
-  coffeeMaker.isFilled();
+
+  if(coffeeMaker.isFilled()) {
+    std::cout << "There is enough coffee inside the coffeemaker.\n"
+              << "We can now start brewing some decent coffee!\n";
+  } else {
+    std::cout << "There is NOT enough coffee inside the coffeemaker ... \n"
+              << "We can start brewing, however, it will taste terrible.\n";
+  }
+
   coffeeMaker.brew();
 
   // end program
