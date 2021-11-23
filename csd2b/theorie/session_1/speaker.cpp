@@ -1,20 +1,4 @@
-#include <iostream>
-
-class Speaker
-{
-public:
-  Speaker();
-  ~Speaker();
-  void make_sound();
-  float filter_freq; // filter cutoff frequency
-/*
-  To do: add some speaker parts
-  woofer
-  tweeter
-  amp
-  filter
-*/
-};
+#include "speaker.h"
 
 Speaker::Speaker()
 {
@@ -32,14 +16,3 @@ void Speaker::make_sound()
   std::cout << "Tadaaa" << std::endl;
   std::cout << "Filter frequency: " << filter_freq << std::endl;
 }
-
-int main()
-{
-  Speaker speaker_left;
-  Speaker speaker_right;
-
-  speaker_left.make_sound();
-  speaker_left.filter_freq=728.5;
-  speaker_left.make_sound();
-}
-
