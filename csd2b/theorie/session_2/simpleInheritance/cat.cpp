@@ -16,5 +16,5 @@ Cat::~Cat()
 // methods
 void Cat::climb()
 {
-  std::cout << name << " is barking.\n";
+  std::cout << name << " is climbing a tree.\n";
 }

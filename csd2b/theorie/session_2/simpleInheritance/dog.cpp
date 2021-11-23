@@ -16,5 +16,5 @@ Dog::~Dog()
 // methods
 void Dog::bark()
 {
-  std::cout << name << " is climbing a tree.\n";
+  std::cout << name << " is barking.\n";
 }
