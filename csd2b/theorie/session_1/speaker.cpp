@@ -11,8 +11,17 @@ Speaker::~Speaker()
   std::cout << "Destructor called" << std::endl;
 }
 
-void Speaker::make_sound() 
+void Speaker::make_sound(float freq) 
 {
+  if(freq >= filter_freq){
+    tweeter.tweet();
+  }
+  else{
+    woofer_big.woof();
+    woofer_normal.woof();
+  }
+
   std::cout << "Tadaaa" << std::endl;
   std::cout << "Filter frequency: " << filter_freq << std::endl;
 }
+
