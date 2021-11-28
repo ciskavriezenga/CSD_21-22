@@ -15,9 +15,8 @@ public:
   //prevent the default constructor to be generated
   Sine() = delete;
 
-  //override calculate
-  //this method contains the sample calculation
-  void calculate();
+  //functionallity of this method: sample calculation
+  void calculate() override;
 
 /*
   NOTE: we could use a seperate calculate method

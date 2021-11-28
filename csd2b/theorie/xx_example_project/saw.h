@@ -16,9 +16,8 @@ public:
   Saw() = delete;
 
 protected:
-  //override calculate
-  //this method contains the sample calculation
-  void calculate();
+  //functionality of this method: sample calculation
+  void calculate() override;
 
 /*
   NOTE: we could use a seperate calculate method

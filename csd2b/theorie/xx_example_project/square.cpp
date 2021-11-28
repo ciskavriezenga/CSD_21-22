@@ -17,5 +17,5 @@ void Square::calculate()
 {
   //TODO - use square function
   //NOTE sin() method is not the most efficient way to calculate the square value
-  sample = sin(phase * PI_2 );
+  sample = sin(phase * M_PI * 2.0 );
 }

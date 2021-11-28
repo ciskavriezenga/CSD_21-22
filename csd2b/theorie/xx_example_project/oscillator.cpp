@@ -3,22 +3,21 @@
 
 //Constructor and destructor
 Oscillator::Oscillator(double samplerate, double frequency, double amplitude,
-  double phase) : frequency(frequency), amplitude(amplitude), phase(phase),
-  sample(0), samplerate(samplerate)
+  double phase) : Generator(samplerate), frequency(frequency), amplitude(amplitude), phase(phase)
 {
   //TODO - use setFrequency and phase instead, to prevent outrange values
-  std::cout << "\nInside Oscillator::oscillator (double samplerate,"
+#if DEBUG_FLOW
+  std::cout << "• Inside Oscillator::oscillator (double samplerate,"
     << "double frequency, double amplitude, double phase)"
     << "\nfrequency: " << frequency
     << "\nphase: " << phase;
+#endif
 }
 
 Oscillator::~Oscillator()
 {
 
 }
-
-double Oscillator::getSample() { return sample; }
 
 void Oscillator::tick()
 {

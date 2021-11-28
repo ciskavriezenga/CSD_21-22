@@ -14,6 +14,11 @@ Saw::Saw(double samplerate, double frequency, double amplitude, double phase) :
   Oscillator (samplerate, frequency, amplitude, phase),
   phaseIncrement(frequency / samplerate * SAW_SMOOTH_FACTOR),
   smoothY(0) {
+#if DEBUG_FLOW
+    std::cout << "• Inside Saw::Saw(double samplerate, double frequency, "
+    << "double amplitude, double phase)\n";
+#endif
+    
     //phaseIncrement, using a factor 5, which alters the smoothing.
     //TODO -> research aliasing with and without this factor
   }
