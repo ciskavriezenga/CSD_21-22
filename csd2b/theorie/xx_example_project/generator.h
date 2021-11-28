@@ -8,7 +8,7 @@ class Generator {
 public:
   //Constructor and destructor
   Generator(double samplerate);
-  ~Generator();
+  virtual ~Generator();
 
   //return the current sample
   double getSample();

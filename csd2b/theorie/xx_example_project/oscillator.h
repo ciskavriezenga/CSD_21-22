@@ -10,7 +10,7 @@ public:
   //Constructor and destructor
   Oscillator(double samplerate, double frequency, double amplitude,
     double phase);
-  ~Oscillator();
+  virtual ~Oscillator();
 
   void tick() override;
   //getters and setters

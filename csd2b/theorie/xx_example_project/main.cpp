@@ -94,6 +94,12 @@ int main(int argc,char **argv)
       }
   }
 
+  // delete dynamically allocated sine objects
+  for(int i = 0; i < NUM_SINES; i++) {
+    delete sines[i];
+    sines[i] = nullptr;
+  }
+
   //end the program
   return 0;
 } // main()
