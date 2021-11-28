@@ -7,7 +7,10 @@
 
 #define WRITE_TO_FILE 1
 #define WRITE__NUM_SAMPLES 2000
-#define NUM_SINES 10
+#define NUM_SINES 50
+
+#define AMPLITUDE_CALCULATION 0
+
 int main(int argc,char **argv)
 {
   //create a JackModule instance
@@ -18,15 +21,28 @@ int main(int argc,char **argv)
   jack.init(argv[0]);
 
 
-  //create a Sine instance
-  //Sine sine(jack.getSamplerate(), 220, 0);
-  //Saw saw(jack.getSamplerate(), 50, 0);
-
   Sine *sines[NUM_SINES];
   double samplerate = jack.getSamplerate();
-  double amplitude = 0.5 / NUM_SINES;
+  double baseFreq = 110;
   for(int i = 0; i < NUM_SINES; i++) {
-    sines[i] = new Sine(samplerate, 100.0 + i * 10, amplitude);
+    // calculate frequency of harmonic
+    double offsetIndex = 1.0 + i;
+    double freq = baseFreq * offsetIndex;
+    //calculate the amplitude
+#if AMPLITUDE_CALCULATION == 1
+    // calculate the amplitude according sawtooth harmonics amplitude function
+    // https://en.wikipedia.org/wiki/Sawtooth_wave
+    // delimit the sawtooth with * 0.5, otherwise it exceeds [-1, 1]
+    double amp = 0.5 * pow(-1.0,offsetIndex) / offsetIndex;
+#elif AMPLITUDE_CALCULATION == 2
+    // delimit amplitude for each harmonic
+    double amp = 1.0 / pow(2, i + 1);
+#else // use equal amplitude for each oscillator
+    double amp = 0.9 / NUM_SINES;
+#endif
+    std::cout << "sine at index " << i << " - freq: " << freq
+      << ", amp: " << amp << "\n";
+    sines[i] = new Sine(samplerate, freq, amp);
   }
 
 
