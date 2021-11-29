@@ -8,7 +8,7 @@ class Oscillator : public Generator
 {
 public:
   //Constructor and destructor
-  Oscillator(Clock &clock, double samplerate, double frequency, double amplitude,
+  Oscillator(Clock &clock, double frequency, double amplitude,
     double phase);
   virtual ~Oscillator();
 

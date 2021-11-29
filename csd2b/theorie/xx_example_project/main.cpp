@@ -1,14 +1,12 @@
 #include <iostream>
 #include <thread>
+#include "macros.h"
 #include "jack_module.h"
 #include "sine.h"
 #include "saw.h"
 #include "writeToFile.h"
 
-#define WRITE_TO_FILE 1
-#define WRITE__NUM_SAMPLES 2000
-#define NUM_SINES 50
-#define AMPLITUDE_CALCULATION 1
+
 
 int main(int argc,char **argv)
 {
@@ -38,7 +36,7 @@ int main(int argc,char **argv)
 #if AMPLITUDE_CALCULATION == 1
     // calculate the amplitude according sawtooth harmonics amplitude function
     // https://en.wikipedia.org/wiki/Sawtooth_wave
-    // delimit the sawtooth with * 0.5, otherwise it exceeds [-1, 1]
+    // delimit the end signal with * 0.5, otherwise it exceeds [-1, 1]
     double amp = 0.5 * pow(-1.0,offsetIndex) / offsetIndex;
 #elif AMPLITUDE_CALCULATION == 2
     // delimit amplitude for each harmonic
@@ -49,8 +47,9 @@ int main(int argc,char **argv)
     std::cout << "sine at index " << i << " - freq: " << freq
       << ", amp: " << amp << "\n";
     // TODO - remove the samplerate from constructors
-    sines[i] = new Sine(clock, samplerate, freq, amp);
+    sines[i] = new Sine(clock, freq, amp);
   }
+
 
 #if WRITE_TO_FILE
   // write 1 second of samples to file
@@ -77,7 +76,7 @@ int main(int argc,char **argv)
         writeIndex++;
       }
 #endif
-      std::cout << "output buf 0: " << outBuf[0] << std::endl;
+      //std::cout << "output buf 0: " << outBuf[0] << std::endl;
     }
     return 0;
   };

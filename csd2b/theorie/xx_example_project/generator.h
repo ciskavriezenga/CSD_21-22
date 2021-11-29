@@ -2,6 +2,7 @@
 #define _GENERATOR_H_
 
 #include <iostream>
+#include "macros.h"
 #include "clock.h"
 
 // inherits from observer to implement the observer pattern
@@ -9,8 +10,7 @@ class Generator {
 
 public:
   //Constructor and destructor
-  // TODO - remove double samplerate by using samplerate from clock
-  Generator(Clock& clock, double samplerate);
+  Generator(Clock& clock);
   //prevent the default constructor to be generated
   Generator() = delete;
   virtual ~Generator();

@@ -7,10 +7,10 @@ class Saw : public Oscillator
 public:
 
   //constructors and destructor
-  Saw(Clock &clock, double samplerate);
-  Saw(Clock &clock, double samplerate, double frequency);
-  Saw(Clock &clock, double samplerate, double frequency, double amplitude);
-  Saw(Clock &clock, double samplerate, double frequency, double amplitude, double phase);  
+  Saw(Clock &clock);
+  Saw(Clock &clock, double frequency);
+  Saw(Clock &clock, double frequency, double amplitude);
+  Saw(Clock &clock, double frequency, double amplitude, double phase);
   ~Saw();
   //prevent the default constructor to be generated
   Saw() = delete;

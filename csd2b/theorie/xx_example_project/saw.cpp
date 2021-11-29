@@ -2,16 +2,16 @@
 #define OUTPUT_SAWWAVE 1
 #define SAW_SMOOTH_FACTOR 10.0f
 //Constructors and destructor
-Saw::Saw(Clock &clock, double samplerate) : Saw(clock, samplerate, 0, 0) {}
+Saw::Saw(Clock &clock) : Saw(clock, 0, 0) {}
 
-Saw::Saw(Clock &clock, double samplerate, double frequency) :
-  Saw(clock, samplerate, frequency, 0.5, 0) {}
+Saw::Saw(Clock &clock, double frequency) :
+  Saw(clock, frequency, 0.5, 0) {}
 
-Saw::Saw(Clock &clock, double samplerate, double frequency, double amplitude) :
-  Saw(clock, samplerate, frequency, amplitude, 0) {}
+Saw::Saw(Clock &clock, double frequency, double amplitude) :
+  Saw(clock, frequency, amplitude, 0) {}
 
-Saw::Saw(Clock &clock, double samplerate, double frequency, double amplitude, double phase) :
-  Oscillator (clock, samplerate, frequency, amplitude, phase),
+Saw::Saw(Clock &clock, double frequency, double amplitude, double phase) :
+  Oscillator (clock, frequency, amplitude, phase),
   phaseIncrement(frequency / samplerate * SAW_SMOOTH_FACTOR),
   smoothY(0) {
 #if DEBUG_FLOW

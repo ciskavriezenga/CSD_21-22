@@ -1,11 +1,11 @@
 #include "generator.h"
 
-Generator::Generator(Clock& clock, double samplerate) : clock(&clock),
-  sample(0), samplerate(samplerate)
+Generator::Generator(Clock& clock) : sample(0),
+  samplerate(clock.getSamplerate()), clock(&clock)
 {
 #if DEBUG_FLOW
-  std::cout << "• Inside Generator::Generator (double samplerate)"
-    << ", samplerate: " << samplerate << "\n";
+  std::cout << "• Inside Generator::Generator"
+    << "- samplerate: " << samplerate << "\n";
 #endif
 }
 
