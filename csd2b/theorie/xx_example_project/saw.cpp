@@ -2,23 +2,23 @@
 #define OUTPUT_SAWWAVE 1
 #define SAW_SMOOTH_FACTOR 10.0f
 //Constructors and destructor
-Saw::Saw(double samplerate) : Saw(samplerate, 0, 0) {}
+Saw::Saw(Clock &clock, double samplerate) : Saw(clock, samplerate, 0, 0) {}
 
-Saw::Saw(double samplerate, double frequency) :
-  Saw(samplerate, frequency, 0.5, 0) {}
+Saw::Saw(Clock &clock, double samplerate, double frequency) :
+  Saw(clock, samplerate, frequency, 0.5, 0) {}
 
-Saw::Saw(double samplerate, double frequency, double amplitude) :
-  Saw(samplerate, frequency, amplitude, 0) {}
+Saw::Saw(Clock &clock, double samplerate, double frequency, double amplitude) :
+  Saw(clock, samplerate, frequency, amplitude, 0) {}
 
-Saw::Saw(double samplerate, double frequency, double amplitude, double phase) :
-  Oscillator (samplerate, frequency, amplitude, phase),
+Saw::Saw(Clock &clock, double samplerate, double frequency, double amplitude, double phase) :
+  Oscillator (clock, samplerate, frequency, amplitude, phase),
   phaseIncrement(frequency / samplerate * SAW_SMOOTH_FACTOR),
   smoothY(0) {
 #if DEBUG_FLOW
     std::cout << "• Inside Saw::Saw(double samplerate, double frequency, "
     << "double amplitude, double phase)\n";
 #endif
-    
+
     //phaseIncrement, using a factor 5, which alters the smoothing.
     //TODO -> research aliasing with and without this factor
   }

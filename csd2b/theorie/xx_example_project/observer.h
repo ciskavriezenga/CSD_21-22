@@ -7,8 +7,8 @@ class Observer {
 public:
   virtual ~Observer(){}
   virtual void update(Subject* theChangedSubject) = 0;
-protected:
-  Observer(){}
+  //prevent the default constructor to be generated
+  Observer() = delete;
 };
 
 #endif

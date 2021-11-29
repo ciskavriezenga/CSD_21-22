@@ -2,8 +2,8 @@
 
 
 //Constructor and destructor
-Oscillator::Oscillator(double samplerate, double frequency, double amplitude,
-  double phase) : Generator(samplerate), frequency(frequency), amplitude(amplitude), phase(phase)
+Oscillator::Oscillator(Clock &clock, double samplerate, double frequency, double amplitude,
+  double phase) : Generator(clock, samplerate), frequency(frequency), amplitude(amplitude), phase(phase)
 {
   //TODO - use setFrequency and phase instead, to prevent outrange values
 #if DEBUG_FLOW
@@ -19,7 +19,7 @@ Oscillator::~Oscillator()
 
 }
 
-void Oscillator::tick()
+void Oscillator::calcNextSample()
 {
   phase += frequency / samplerate;
   //wrap phase from 0 to 1

@@ -8,8 +8,7 @@
 #define WRITE_TO_FILE 1
 #define WRITE__NUM_SAMPLES 2000
 #define NUM_SINES 50
-
-#define AMPLITUDE_CALCULATION 0
+#define AMPLITUDE_CALCULATION 1
 
 int main(int argc,char **argv)
 {
@@ -20,10 +19,17 @@ int main(int argc,char **argv)
   // init the jack, use program name as JACK client name
   jack.init(argv[0]);
 
-
+  // create array to hold pointers to sine objects
   Sine *sines[NUM_SINES];
+
+  // cache necessary values
   double samplerate = jack.getSamplerate();
   double baseFreq = 110;
+
+  // create clock
+  Clock clock(samplerate);
+
+  // create sine objects dynamically
   for(int i = 0; i < NUM_SINES; i++) {
     // calculate frequency of harmonic
     double offsetIndex = 1.0 + i;
@@ -42,40 +48,37 @@ int main(int argc,char **argv)
 #endif
     std::cout << "sine at index " << i << " - freq: " << freq
       << ", amp: " << amp << "\n";
-    sines[i] = new Sine(samplerate, freq, amp);
+    // TODO - remove the samplerate from constructors
+    sines[i] = new Sine(clock, samplerate, freq, amp);
   }
-
 
 #if WRITE_TO_FILE
   // write 1 second of samples to file
   WriteToFile fileWriter("output.csv", true);
   int writeIndex = 0;
-  jack.onProcess = [&sines, &fileWriter, &writeIndex](jack_default_audio_sample_t *inBuf,
+  jack.onProcess = [&clock, &sines, &fileWriter, &writeIndex](jack_default_audio_sample_t *inBuf,
      jack_default_audio_sample_t *outBuf, jack_nframes_t nframes)
 #else
-  jack.onProcess = [&sines](jack_default_audio_sample_t *inBuf,
+  jack.onProcess = [&clock, &sines](jack_default_audio_sample_t *inBuf,
      jack_default_audio_sample_t *outBuf, jack_nframes_t nframes)
 #endif
   {
     //loop through frames, retrieve sample of sine per frame
     for(int i = 0; i < nframes; i++) {
+      // do not forget to clear the buffer! --> set to 0
       outBuf[i] = 0;
       for (int j = 0; j < NUM_SINES; j++) {
         outBuf[i] += sines[j]->getSample();
-        sines[j]->tick();
       }
-
-      // outBuf[i] = saw.getSample();
-      // saw.tick();
+      clock.tick();
 #if WRITE_TO_FILE
       if(writeIndex < WRITE__NUM_SAMPLES) {
         fileWriter.write(std::to_string(outBuf[i]) + "\n");
         writeIndex++;
       }
 #endif
-
+      std::cout << "output buf 0: " << outBuf[0] << std::endl;
     }
-
     return 0;
   };
 

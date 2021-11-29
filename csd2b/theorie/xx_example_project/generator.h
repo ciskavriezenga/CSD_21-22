@@ -2,28 +2,34 @@
 #define _GENERATOR_H_
 
 #include <iostream>
+#include "clock.h"
 
+// inherits from observer to implement the observer pattern
 class Generator {
 
 public:
   //Constructor and destructor
-  Generator(double samplerate);
+  // TODO - remove double samplerate by using samplerate from clock
+  Generator(Clock& clock, double samplerate);
+  //prevent the default constructor to be generated
+  Generator() = delete;
   virtual ~Generator();
 
   //return the current sample
   double getSample();
-  // TODO - add observer - clock that calls this function
-  //abstract method, calculate the next sample, implement in derived classes
-  virtual void tick() = 0;
 
 protected:
   //abstract method, calculate the next sample, implement in derived classes
-  virtual void calculate() = 0;
+  virtual void calcNextSample() = 0;
 
+  // sample holds the last generated sample
   double sample;
   double samplerate;
 
 private:
-  Generator();
+  // the index of the next sample to calculate
+  uint nextSampleIndex = 0;
+  // The clock this signal runs at
+  Clock* clock = nullptr;
 };
 #endif

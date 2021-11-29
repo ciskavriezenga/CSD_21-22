@@ -8,11 +8,10 @@ class Oscillator : public Generator
 {
 public:
   //Constructor and destructor
-  Oscillator(double samplerate, double frequency, double amplitude,
+  Oscillator(Clock &clock, double samplerate, double frequency, double amplitude,
     double phase);
   virtual ~Oscillator();
 
-  void tick() override;
   //getters and setters
   void setFrequency(double frequency);
   double getFrequency();
@@ -22,10 +21,11 @@ public:
   //NOTE - do we need a setter for phase? for now -> not using one
 
 protected:
+  void calcNextSample() override;
+  virtual void calculate() = 0;
   double frequency;
   double amplitude;
   double phase;
-
 };
 
 #endif

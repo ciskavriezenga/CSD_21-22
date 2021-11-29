@@ -7,10 +7,10 @@ class Sine : public Oscillator
 public:
 
   //constructors and destructor
-  Sine(double samplerate);
-  Sine(double samplerate, double frequency);
-  Sine(double samplerate, double frequency, double amplitude);
-  Sine(double samplerate, double frequency, double amplitude, double phase);
+  Sine(Clock &clock, double samplerate);
+  Sine(Clock &clock, double samplerate, double frequency);
+  Sine(Clock &clock, double samplerate, double frequency, double amplitude);
+  Sine(Clock &clock, double samplerate, double frequency, double amplitude, double phase);
   ~Sine();
   //prevent the default constructor to be generated
   Sine() = delete;

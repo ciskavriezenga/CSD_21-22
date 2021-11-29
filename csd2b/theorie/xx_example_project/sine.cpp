@@ -1,16 +1,16 @@
 #include "sine.h"
 
 //Constructors and destructor
-Sine::Sine(double samplerate) : Sine(samplerate, 0, 0) {}
+Sine::Sine(Clock &clock, double samplerate) : Sine(clock, samplerate, 0, 0) {}
 
-Sine::Sine(double samplerate, double frequency) :
-  Sine(samplerate, frequency, 0.5, 0) {}
+Sine::Sine(Clock &clock, double samplerate, double frequency) :
+  Sine(clock, samplerate, frequency, 0.5, 0) {}
 
-Sine::Sine(double samplerate, double frequency, double amplitude) :
-  Sine(samplerate, frequency, amplitude, 0) {}
+Sine::Sine(Clock &clock, double samplerate, double frequency, double amplitude) :
+  Sine(clock, samplerate, frequency, amplitude, 0) {}
 
-Sine::Sine(double samplerate, double frequency, double amplitude,
-  double phase) : Oscillator (samplerate, frequency, amplitude, phase) {
+Sine::Sine(Clock &clock, double samplerate, double frequency, double amplitude,
+  double phase) : Oscillator (clock, samplerate, frequency, amplitude, phase) {
     #if DEBUG_FLOW
       std::cout << "• Inside Sine::Sine(double samplerate, double frequency, "
       << "double amplitude, double phase)\n";

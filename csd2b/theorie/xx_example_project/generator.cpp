@@ -1,9 +1,8 @@
 #include "generator.h"
 
-// private, forcing unreachable default constructor
-Generator::Generator() : sample(0) {}
-
-Generator::Generator(double samplerate) : sample(0), samplerate(samplerate){
+Generator::Generator(Clock& clock, double samplerate) : clock(&clock),
+  sample(0), samplerate(samplerate)
+{
 #if DEBUG_FLOW
   std::cout << "• Inside Generator::Generator (double samplerate)"
     << ", samplerate: " << samplerate << "\n";
@@ -12,4 +11,11 @@ Generator::Generator(double samplerate) : sample(0), samplerate(samplerate){
 
 Generator::~Generator() {}
 
-double Generator::getSample() { return sample; }
+double Generator::getSample() {
+  // if the clock is at the next index --> calculate new sample
+  if((clock->getClockIndex()) >= nextSampleIndex) {
+    nextSampleIndex = clock->getClockIndex() + 1;
+    calcNextSample();
+  }
+  return sample;
+}
