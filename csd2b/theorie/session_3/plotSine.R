@@ -30,7 +30,7 @@ abline(h = 0, lty = 1, col = "gray")
 # a sinewave with frequency = 2 has a two time shorter wavelength compared to a sinewave with frequency = 1
 # thus at every sample step it 'goes two times faster', we can simply multiply t
 frequency <- 2
-sinewave <- function(t) sin(t * 2*pi * frequency / samplerate)
+sinewave <- function(t) sin(2* t * pi * frequency / samplerate)
 curve(sinewave, add = TRUE, col = "violet")
 frequency <- 10
 sinewave <- function(t) sin(t * 2*pi * frequency / samplerate)
@@ -60,13 +60,13 @@ curve(sinewave, add = TRUE, col = "green")
 
 # Let's rewrite the equation.
 # sample =  sin((t / samplerate) * 2 * pi)
-# with phase = 1 / samplerate 
+# with phase = t / samplerate 
 # results in: 
 # sample = sin(phase * 2 * pi)
 #
 # To generate a sinewave with frequency = 1, it is sufficient to keep track of the phase
 # and to increase this at each sample step.
-# phase += 1 / samplerate
+# phase += frequenc / samplerate
 #
 # Now, let's also consider the frequency 
 # To also take the frequency into account, we can simply add it as follow.
@@ -79,6 +79,7 @@ sinewave <- function(t) {
   phase = phase + (frequency / samplerate)
   return (sin((t * frequency / samplerate) * 2*pi))
 }
-curve(sinewave, add = TRUE, col = "red")
+curve(sinewave, 0, samplerate, xname = "x")
+
 
 
