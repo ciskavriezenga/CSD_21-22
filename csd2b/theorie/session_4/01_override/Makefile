@@ -1,7 +1,7 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++14
 LDFLAGS=
-SOURCE= oscillator.o sine.o main.o
+SOURCE= oscillator.o saw.o sine.o main.o
 TARGET=example
 
 $(TARGET) : $(SOURCE)
