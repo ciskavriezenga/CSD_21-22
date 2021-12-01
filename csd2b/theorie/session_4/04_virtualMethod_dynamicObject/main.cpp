@@ -8,7 +8,6 @@
 
 int main()
 {
-  Oscillator osc;
   /*
    * Create the sine and saw objects dynamically with the keyword 'new'
    * This returns a pointer to the sine object, which we can store in

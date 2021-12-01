@@ -11,7 +11,7 @@ int main()
   Saw saw;
 
   /*
-   * because the base class calculate methods are overridden in the subclass,
+   * because the base class calculate method is overridden in the subclass,
    * the calculate function of the subclass is called, not the baseclass.
    */
   sine.calculate();

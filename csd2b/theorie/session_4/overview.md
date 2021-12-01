@@ -21,10 +21,12 @@
   * abstract class with pure virtual methods
   * polymorfisme
   <u>**example 02_override**</u>
-  <u>**example 03_virtualMethod**</u>
-  <u>**example 04_polymorphism**</u> TODO ...
+  <u>**example 03_override_callFromBase**</u>
+  <u>**example 04_virtualMethod**</u>
+  <u>**example 05_virtualMethod_dynamicObject**</u>
+  <u>**example 06_polymorphism**</u> TODO ...
 
 ## Extra
 * demo computervision & Augmented Reality
   _detect object orientation with checkerboard pattern_
-  * <u>**example ../session_4/05_AR_checkerboard**</u>
+  * <u>**example ../session_4/06_AR_checkerboard**</u>
