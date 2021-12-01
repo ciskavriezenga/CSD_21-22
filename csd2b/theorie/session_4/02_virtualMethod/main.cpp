@@ -11,22 +11,23 @@ int main()
   /*
    * Create the sine and saw objects dynamically with the keyword 'new'
    * This returns a pointer to the sine object, which we can store in
-   * a class pointer, e.g. a Sine pointer or a Saw pointer
+   * a 'class pointer', e.g. a Sine pointer or a Saw pointer
    * a pointer type is indicated with a *, which is simply a convention.
    */
   Sine* sine = new Sine();
   Saw* saw = new Saw();
 
   /*
-   * because the base class calculate methods are overridden in the subclass,
-   * the calculate function of the subclass is called, not the baseclass.
+   * because the base class calculate method is overridden in both subclasses,
+   * the calculate method of the subclass is called, instead of the calculate
+   * method of the baseclass.
    */
   sine->calculate();
   saw->calculate();
 
 
   /*
-   * Now let's store the pointers to the sine and saw objects in a Oscillator
+   * Now let's store the pointers to the sine and saw objects in an Oscillator
    * pointer!
    */
   Oscillator* sineOscillator = sine;
