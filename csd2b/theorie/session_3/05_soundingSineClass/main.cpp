@@ -12,8 +12,6 @@
  * jackd -d coreaudio
  */
 
-#define PI_2 6.28318530717959
-
 int main(int argc,char **argv)
 {
   // create a JackModule instance
@@ -24,17 +22,16 @@ int main(int argc,char **argv)
   double samplerate = jack.getSamplerate();
   Sine sine(220, samplerate);
 
+  float amplitude = 0.15;
   //assign a function to the JackModule::onProces
-  jack.onProcess = [&sine](jack_default_audio_sample_t *inBuf,
-     jack_default_audio_sample_t *outBuf, jack_nframes_t nframes) {
-
-    static float amplitude = 0.15;
+  jack.onProcess = [&sine, &amplitude](jack_default_audio_sample_t *inBuf,
+    jack_default_audio_sample_t *outBuf, jack_nframes_t nframes) {
 
     for(unsigned int i = 0; i < nframes; i++) {
       outBuf[i] = sine.getSample() * amplitude;
       sine.tick();
     }
-
+    amplitude = 0.5;
     return 0;
   };
 

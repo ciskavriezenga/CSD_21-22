@@ -4,9 +4,9 @@
 
 
 /*
-Example with a circular buffer, used to store a melody
+Example with a very simple circular buffer, used to store a melody
 (for sake of simplicity the melody contains integers)
-*/ 
+*/
 
 
 // read notes from melody till melody is empty

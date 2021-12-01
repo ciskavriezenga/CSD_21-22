@@ -28,15 +28,12 @@ int main(int argc,char **argv)
   float frequency = 880;
   float delta = frequency / samplerate;
   //assign a function to the JackModule::onProces
-  jack.onProcess = [samplerate, &phase, delta, amplitude, frequency](jack_default_audio_sample_t *inBuf,
+  jack.onProcess = [&phase, delta, amplitude](jack_default_audio_sample_t *inBuf,
      jack_default_audio_sample_t *outBuf, jack_nframes_t nframes) {
 
     for(unsigned int i = 0; i < nframes; i++) {
       outBuf[i] = amplitude * sin(phase * M_PI * 2.0f );
       phase += delta;//frequency / samplerate;
-      if(((double)frequency / (double)samplerate) > (double)std::numeric_limits<float>::max()) {
-        std::cout << "WRAPPED " << phase << "\n";
-      }
       if(phase > 1.0) phase -= 1.0;
     }
     return 0;

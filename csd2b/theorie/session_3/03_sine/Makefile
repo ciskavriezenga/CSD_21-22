@@ -1,12 +1,13 @@
 CXX=g++
-CXXFLAGS=-Wall -std=c++14
+CXXFLAGS=-Wall -std=c++1z
 LDFLAGS=
 SOURCE= writeToFile.o sine.o main.o
+TARGET=example
 
-example: $(SOURCE)
+$(TARGET): $(SOURCE)
 	$(CXX) -o $@ $(SOURCE) $(LDFLAGS)
 
 .cpp.o:
 	$(CXX) -c $(CXXFLAGS) $<
 clean:
-	rm -f example *.o
+	rm -f $(TARGET) *.o
