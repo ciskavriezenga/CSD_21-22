@@ -9,24 +9,25 @@
   * git _(* randvoorwaarde)_
 
 * #### Precision & phase wrap
-  * <u>**example ../session_3/06_sin_function**</u>
-  * <u>**example ../session_3/07_precision**</u>
+  * <u>**example 01_sin_function**</u>
+  * <u>**example 02_precision**</u>
+
+* #### (pure) virtual methods & abstract classes
+  * override
+  <u>**example 03_override**</u>
+  * virtual method
+  * pure virtual method & abstract class
+  <u>**example 04_override_callFromBase**</u>
 
 * #### Pointers
-  * <u>**example /01_pointerExamples**</u> #MARC's code
+  * <u>**example /05_pointerExamples**</u> #MARC's code
+  * abstract class with pure virtual methods
 
 * #### Polymorfisme
-  * override
-  * virtual method
-  * abstract class with pure virtual methods
-  * polymorfisme
-  <u>**example 02_override**</u>
-  <u>**example 03_override_callFromBase**</u>
-  <u>**example 04_virtualMethod**</u>
-  <u>**example 05_virtualMethod_dynamicObject**</u>
-  <u>**example 06_polymorphism**</u> TODO ...
+  <u>**example 06_virtualMethod_dynamicObject**</u>
+  <u>**example 07_polymorphism**</u> TODO ... / or same example as 6?
 
 ## Extra
-* demo computervision & Augmented Reality
+* demo computer vision & Augmented Reality
   _detect object orientation with checkerboard pattern_
-  * <u>**example ../session_4/06_AR_checkerboard**</u>
+  * <u>**example 08_AR_checkerboard**</u>
