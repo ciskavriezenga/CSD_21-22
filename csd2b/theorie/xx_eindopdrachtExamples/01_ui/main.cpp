@@ -15,7 +15,7 @@ bool validateSelection(std::string selection, std::string selectionOptions[],
 }
 
 
-std::string retrieveUserSelection(std::string selectionOptions[], int numOptions)
+std::string retrieveUserInput(std::string selectionOptions[], int numOptions)
 {
     // show user the allowed options
     std::cout << "Please enter your selection. You can choice between: ";
@@ -30,27 +30,34 @@ std::string retrieveUserSelection(std::string selectionOptions[], int numOptions
     return selection;
 }
 
+std::string retrieveUserSelection(std::string selectionOptions[], int numOptions)
+{
+    bool noCorrectSelection = true;
+    std::string userSelection = "";
+    while(noCorrectSelection) {
+        // let user choice between the allowed options
+        userSelection = retrieveUserInput(selectionOptions,
+            numOptions);
+        // check if the selection is correct
+        noCorrectSelection = !validateSelection(userSelection, selectionOptions,
+            numOptions);
+        // if selection is not correct, log message to user to try again
+        if(noCorrectSelection) {
+            std::cout << "Incorrect selection, please try again";
+        }
+    }
+    return userSelection;
+}
+
 
 int main()
 {
     std::string waveFormOptions[4] = {"sine", "saw", "square", "triangle"};
     int numWaveFormOptions = 4;
 
-    bool noCorrectSelection = true;
-    std::string userSelection = "";
-    while(noCorrectSelection) {
-        // let user choice between the allowed options
-        userSelection = retrieveUserSelection(waveFormOptions,
-            numWaveFormOptions);
-        // check if the selection is correct
-        noCorrectSelection = !validateSelection(userSelection, waveFormOptions,
-            numWaveFormOptions);
-        // if selection is not correct, log message to user to try again
-        if(noCorrectSelection) {
-            std::cout << "Incorrect selection, please try again";
-        }
-    }
+    std::string waveTypeSelection = retrieveUserSelection(waveFormOptions,
+        numWaveFormOptions);
 
-    std::cout << "You selected: " << userSelection << std::endl;
+    std::cout << "You selected: " << waveTypeSelection << std::endl;
 
 }
