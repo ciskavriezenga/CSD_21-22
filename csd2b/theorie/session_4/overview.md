@@ -24,8 +24,10 @@
   * abstract class with pure virtual methods
 
 * #### Polymorfisme
+  * dynamic object allocation
+  * use baseclass pointer to object --> Polymorfisme
   <u>**example 06_virtualMethod_dynamicObject**</u>
-  <u>**example 07_polymorphism**</u> TODO ... / or same example as 6?
+
 
 ## Extra
 * demo computer vision & Augmented Reality
