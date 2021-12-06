@@ -25,9 +25,9 @@
 
 * #### Polymorfisme
   * use baseclass pointer to object --> Polymorfisme
-  <u>**example 06_virtualMethod**</u>
+  <u>**example 06_polymorphism**</u>
   * dynamic object allocation
-  <u>**example 07_virtualMethod_dynamicObject**</u>
+  <u>**example 07_polymorphism_dynamicAllocation**</u>
 
 
 ## Extra
