@@ -3,7 +3,6 @@
 
 /*
  * Simple example of the need for virtual methods
- * We allocate a sine and square object dynamically
  */
 
 int main()
