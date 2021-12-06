@@ -5,10 +5,10 @@ SOURCE= jack_module.o main.o
 TARGET=example
 
 $(TARGET) : $(SOURCE)
-	$(CXX) -o $@ $(CFLAGS) $(SOURCE) $(LDFLAGS)
+	$(CXX) -o $@ $(SOURCE) $(LDFLAGS)
 
 .cpp.o:
-	$(CXX) -c $< $(CFLAGS)
+	$(CXX) -c $< $(CXXFLAGS)
 
 clean:
 	rm -f $(TARGET) *.o

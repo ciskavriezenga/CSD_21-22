@@ -1,4 +1,5 @@
 #include <iostream>
+// written by: Marc Groenewegen
 
 int main()
 {
@@ -20,4 +21,3 @@ int main()
 
   return 0;
 }
-

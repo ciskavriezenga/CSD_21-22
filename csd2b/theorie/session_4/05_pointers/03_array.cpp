@@ -1,5 +1,5 @@
 #include <iostream>
-
+// written by: Marc Groenewegen
 
 int sumsquares(int *block)
 {
@@ -26,4 +26,3 @@ int main()
 
   return 0;
 }
-

@@ -1,4 +1,5 @@
 #include <iostream>
+// written by: Marc Groenewegen
 
 // function gets a pointer to a variable
 int sumsquares(int *x)
@@ -18,4 +19,3 @@ int main()
 
   return 0;
 }
-
