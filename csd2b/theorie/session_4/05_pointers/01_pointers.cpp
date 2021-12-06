@@ -7,6 +7,9 @@ int main()
 
   std::cout << letter << std::endl;
 
+  // print asci decimal set value
+  std::cout << (uint) letter << std::endl;
+
   // maak een pointer en laat wijzen naar letter
   char* letterPointer = &letter;
 

@@ -20,7 +20,7 @@
   <u>**example 04_override_callFromBase**</u>
 
 * #### Pointers
-  * <u>**example /05_pointerExamples**</u> #MARC's code
+  * <u>**example /05_pointerExamples**</u> #credits voor Marc
   * abstract class with pure virtual methods
 
 * #### Polymorfisme
