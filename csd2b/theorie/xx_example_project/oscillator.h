@@ -18,9 +18,8 @@ public:
   void setAmplitude(double amplitude);
   double getAmplitude();
 
-  //NOTE - do we need a setter for phase? for now -> not using one
-
 protected:
+  // updates the phase value and then calls calculate
   void calcNextSample() override;
   virtual void calculate() = 0;
   double frequency;

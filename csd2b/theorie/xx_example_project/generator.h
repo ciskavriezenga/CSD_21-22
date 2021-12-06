@@ -18,6 +18,8 @@ public:
   //return the current sample
   double getSample();
 
+  //NOTE - do we need a setter for phase? for now -> not using one
+
 protected:
   //abstract method, calculate the next sample, implement in derived classes
   virtual void calcNextSample() = 0;
