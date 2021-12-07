@@ -6,24 +6,24 @@ class Saw
 {
 public:
   //Constructor and destructor
-  Saw(float frequency, double samplerate);
+  Saw(double frequency, double samplerate);
   ~Saw();
 
   //return the current sample
-  float getSample();
+  double getSample();
   // go to next sample
   void tick();
 
   //getters and setters
-  void setFrequency(float frequency);
-  float getFrequency();
+  void setFrequency(double frequency);
+  double getFrequency();
 
 private:
-  float frequency;
-  float amplitude;
-  float phase;
+  double frequency;
+  double amplitude;
+  double phase;
   // sample contains the current sample
-  float sample;
+  double sample;
   double samplerate;
 };
 

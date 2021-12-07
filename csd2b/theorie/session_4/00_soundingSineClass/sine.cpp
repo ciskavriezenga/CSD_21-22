@@ -1,8 +1,8 @@
 #include "sine.h"
 #include "math.h"
 
-Sine::Sine(float frequency, double samplerate) : frequency(frequency),
-  amplitude(0.5), phase(0), sample(0), samplerate(samplerate)
+Sine::Sine(double frequency, double samplerate) : frequency(frequency),
+  amplitude(1.0), phase(0), sample(0), samplerate(samplerate)
 {
   std::cout << "Sine - constructor\n";
 }
@@ -14,7 +14,7 @@ Sine::~Sine() {
 }
 
 
-float Sine::getSample() {
+double Sine::getSample() {
   return sample;
 }
 
@@ -28,13 +28,13 @@ void Sine::tick() {
 }
 
 //getters and setters
-void Sine::setFrequency(float frequency)
+void Sine::setFrequency(double frequency)
 {
   // TODO add check to see if parameter is valid
   this->frequency = frequency;
 }
 
-float Sine::getFrequency()
+double Sine::getFrequency()
 {
   return frequency;
 }

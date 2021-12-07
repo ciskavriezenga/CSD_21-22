@@ -6,24 +6,24 @@ class Square
 {
 public:
   //Constructor and destructor
-  Square(float frequency, double samplerate);
+  Square(double frequency, double samplerate);
   ~Square();
 
   //return the current sample
-  float getSample();
+  double getSample();
   // go to next sample
   void tick();
 
   //getters and setters
-  void setFrequency(float frequency);
-  float getFrequency();
+  void setFrequency(double frequency);
+  double getFrequency();
 
 private:
-  float frequency;
-  float amplitude;
-  float phase;
+  double frequency;
+  double amplitude;
+  double phase;
   // sample contains the current sample
-  float sample;
+  double sample;
   double samplerate;
 };
 

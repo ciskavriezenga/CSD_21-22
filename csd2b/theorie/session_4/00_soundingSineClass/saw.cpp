@@ -1,8 +1,8 @@
 #include "saw.h"
 #include "math.h"
 
-Saw::Saw(float frequency, double samplerate) : frequency(frequency),
-  amplitude(0.5), phase(0.5), sample(0), samplerate(samplerate)
+Saw::Saw(double frequency, double samplerate) : frequency(frequency),
+  amplitude(1.0), phase(0.5), sample(0), samplerate(samplerate)
 {
   std::cout << "Saw - constructor\n";
 }
@@ -14,7 +14,7 @@ Saw::~Saw() {
 }
 
 
-float Saw::getSample() {
+double Saw::getSample() {
   return sample;
 }
 
@@ -23,18 +23,19 @@ void Saw::tick() {
   phase += frequency / samplerate;
   // wrap the phase so it stays in the interval [0, 1]
   if(phase > 1) phase -= 1.0;
-  // saw functionality comes here
-  sample = 0 * amplitude;
+  // calculate saw wave
+  sample = phase * 2.0 - 1.0;
+  sample *= amplitude;
 }
 
 //getters and setters
-void Saw::setFrequency(float frequency)
+void Saw::setFrequency(double frequency)
 {
   // TODO add check to see if parameter is valid
   this->frequency = frequency;
 }
 
-float Saw::getFrequency()
+double Saw::getFrequency()
 {
   return frequency;
 }

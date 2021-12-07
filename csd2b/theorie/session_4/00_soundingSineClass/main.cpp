@@ -3,9 +3,9 @@
 #include "jack_module.h"
 #include "math.h"
 #include "writeToFile.h"
+#include "sine.h"
 #include "saw.h"
 #include "square.h"
-#include "sine.h"
 
 /*
  * NOTE: jack2 needs to be installed
@@ -16,6 +16,7 @@
  */
 
 #define WRITE_TO_FILE 0
+
 
 int main(int argc,char **argv)
 {
@@ -28,6 +29,7 @@ int main(int argc,char **argv)
   double samplerate = jack.getSamplerate();
   Sine sine(220, samplerate);
 
+
 #if WRITE_TO_FILE
   WriteToFile fileWriter("output.csv", true);
 
@@ -35,7 +37,7 @@ int main(int argc,char **argv)
     fileWriter.write(std::to_string(sine.getSample()) + "\n");
     sine.tick();
   }
-#endif
+#else
 
   float amplitude = 0.15;
   //assign a function to the JackModule::onProces
@@ -66,7 +68,7 @@ int main(int argc,char **argv)
         break;
     }
   }
-
+#endif
   //end the program
   return 0;
 
