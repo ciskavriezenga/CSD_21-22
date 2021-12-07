@@ -6,7 +6,11 @@
 
 int main()
 {
+
+  Oscillator osc;
+
   Sine sine;
+
 
   /*
    * because the base class calculate method is overridden in the subclass,

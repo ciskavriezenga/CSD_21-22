@@ -1,5 +1,5 @@
 CXX=g++
-CFLAGS = -I/usr/local/include -Wall -std=c++1z
+CXXFLAGS = -I/usr/local/include -Wall -std=c++1z
 LDFLAGS= -ljack
 SOURCE= jack_module.o writeToFile.o main.o
 TARGET=example
