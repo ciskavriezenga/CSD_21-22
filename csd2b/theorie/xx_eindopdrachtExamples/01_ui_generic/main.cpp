@@ -91,7 +91,7 @@ int main()
     std::cout << "You selected: " << waveTypeSelection << std::endl;
 
 
-    float value =  retrieveUserValue(20, 20499);
+    float value =  retrieveValueInRange(20, 20499);
     std::cout << "You chose the following value: " << value << std::endl;
 
 }
