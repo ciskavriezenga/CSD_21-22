@@ -44,7 +44,6 @@ void addText(Mat img, std::string text, Point position, double fontScale = 1) {
      Scalar(255, 255, 255), 2, LINE_AA);
 }
 
-//TODO - add comments.
 int main(int argc, char* argv[])
 {
   int w;
