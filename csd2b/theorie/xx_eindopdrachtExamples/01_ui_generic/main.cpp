@@ -50,6 +50,24 @@ std::string retrieveUserSelection(std::string selectionOptions[], int numOptions
 }
 
 
+float retrieveUserValue(float min, float max) {
+  float value = 0;
+  bool notInRange = true;
+  while(notInRange) {
+    std::cout << "Please enter a value between " << min << " and " << max
+      << std::endl;
+    std::cin >> value;
+    // TODO - check if the input is a float - BUG currently
+    if(value >= min && value <= max) {
+      notInRange = false;
+    } else {
+      std::cout << "Incorrect range, please try again." << std::endl;
+    }
+  }
+
+  return value;
+}
+
 int main()
 {
     std::string waveFormOptions[4] = {"sine", "saw", "square", "triangle"};
@@ -59,5 +77,9 @@ int main()
         numWaveFormOptions);
 
     std::cout << "You selected: " << waveTypeSelection << std::endl;
+
+
+    float value =  retrieveUserValue(20, 20499);
+    std::cout << "You chose the following value: " << value << std::endl;
 
 }
