@@ -51,17 +51,25 @@ std::string retrieveUserSelection(std::string selectionOptions[], int numOptions
 
 
 float retrieveUserValue(float min, float max) {
+  std::string input;
   float value = 0;
   bool notInRange = true;
   while(notInRange) {
     std::cout << "Please enter a value between " << min << " and " << max
       << std::endl;
-    std::cin >> value;
-    // TODO - check if the input is a float - BUG currently
-    if(value >= min && value <= max) {
-      notInRange = false;
-    } else {
-      std::cout << "Incorrect range, please try again." << std::endl;
+    // first capture input in input string
+    std::cin >> input;
+    // validate if input string can be transformed into a float
+    try {
+      value = std::stof(input);
+      if(value >= min && value <= max) {
+        notInRange = false;
+      } else {
+        std::cout << "Incorrect range, please try again." << std::endl;
+      }
+    } catch (const std::exception& e) {
+      std::cout << "Invalid input, this was not a number, please try again"
+        << std::endl;
     }
   }
 
