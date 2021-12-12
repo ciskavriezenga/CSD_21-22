@@ -10,6 +10,7 @@
     * override & virtual / pure virtual methods & abstract classes
     * pointers
     * class diagram - Synths & Oscillators
+  * Denk aan de .o files! --> .gitignore
 
 * #### Eindopdracht
 _EHBS: eerste hulp bij stress_
