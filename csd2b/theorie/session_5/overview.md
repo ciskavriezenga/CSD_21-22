@@ -1,9 +1,14 @@
 
-# Session 4
+# Session 5
 
 ## Content
 
+* #### HKU Brede seminars
+  * Lezen en inschrijven voor HKU brede seminar - koffie / thee?   
+  https://studentportal.hku.nl/opleidingen/hkubrede-seminars.htm
+
 * #### 'Stand van zaken'
+
   * Hoe gaat het?
   * Recap last week
     * precision & wrap phase
