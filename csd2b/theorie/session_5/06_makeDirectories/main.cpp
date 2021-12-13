@@ -6,7 +6,6 @@
 #include "sine.h"
 #include "saw.h"
 #include "square.h"
-#include "synth.h"
 
 /*
  * NOTE: jack2 needs to be installed
@@ -16,7 +15,7 @@
  * jackd -d coreaudio
  */
 
-#define WRITE_TO_FILE 1
+#define WRITE_TO_FILE 0
 
 
 int main(int argc,char **argv)
@@ -28,15 +27,15 @@ int main(int argc,char **argv)
   // init the jack, use program name as JACK client name
   jack.init(argv[0]);
   double samplerate = jack.getSamplerate();
-  Synth synth(60, samplerate);
+  Sine sine(220, samplerate);
 
 
 #if WRITE_TO_FILE
   WriteToFile fileWriter("output.csv", true);
 
   for(int i = 0; i < 500; i++) {
-    fileWriter.write(std::to_string(synth.getSample()) + "\n");
-    synth.tick();
+    fileWriter.write(std::to_string(sine.getSample()) + "\n");
+    sine.tick();
   }
 #else
 
@@ -46,10 +45,11 @@ int main(int argc,char **argv)
     jack_default_audio_sample_t *outBuf, jack_nframes_t nframes) {
 
     for(unsigned int i = 0; i < nframes; i++) {
-      outBuf[i] = synth.getSample() * amplitude;
-      synth.tick();
+      outBuf[i] = sine.getSample() * amplitude;
+      sine.tick();
     }
 
+    amplitude = 0.5;
     return 0;
   };
 
