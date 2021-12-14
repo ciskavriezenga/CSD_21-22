@@ -8,6 +8,8 @@
 
 int main()
 {
+#if 1 // build example 1
+
   /*
    * Create the sine and saw objects dynamically with the keyword 'new'
    * This returns a pointer to the sine object, which we can store in
@@ -25,7 +27,6 @@ int main()
   sine->calculate();
   saw->calculate();
 
-
   /*
    * Now let's store the pointers to the sine and saw objects in an Oscillator
    * pointer!
@@ -41,50 +42,26 @@ int main()
   sineOscillator->calculate();
   sawOscillator->calculate();
 
-  /*
-   * WE NEED THE KEYWORD 'virtual'!
-   *
-   * _______ * * * DIY * * *  _______
-   * 1. add the keyword 'virtual' to the header of the baseclass as follow:
-   *  virtual void calculate();
-   *
-   * now rebuild: make clean, make - because you only altered a header!
-   * which calculate method is called?
-   *
-   * 2. create an object of the type Oscillator in the main.cpp:
-   * Oscillator osc;
-   * (for the sake of this example there is no need to make this dynamic).
-   * rebuild and rerun your code. Does it work?
-   *
-   * 3. Now, change the virtual method definition ('virtual void calculate()')
-   * in the baseclass into:
-   * virtual void calculate() = 0;
-   * AND remove the implementation of this method in the oscillator.cpp file.
-   * rebuild (rember to run 'make clean' first!) your code --> do you succeed?
-   * ....
-   * ...
-   * ..
-   * .
-   *
-   * NO ...
-   * You will get the following error:
-   * main.cpp:11:14: error: variable type 'Oscillator' is an abstract class
-   * Oscillator osc;
-   *             ^
-   * ./oscillator.h:11:16: note: unimplemented pure virtual method 'calculate' in 'Oscillator'
-   * virtual void calculate() = 0;
-   *
-   * Questions:
-   * Why can't you create an instance of the type Oscillator?
-   * When you view this from the perspective of categories - e.g. Pet, Cat, Dog
-   * does it then 'make sense' that you can not create a Pet? But you can create
-   * a Dog or Cat?
-   */
-
-
   // delete dynamically allocated objects
   delete sine;
   sine = nullptr;
   delete saw;
   saw = nullptr;
+
+
+#else //build example 2
+
+  Oscillator* osc = nullptr;
+  int choice = 0;
+  if(choice == 0) {
+    osc = new Sine();
+  } else {
+    osc = new Saw();
+  }
+
+  osc->calculate();
+  // delete dynamically allocated objects
+  delete osc;
+  osc = nullptr;
+#endif
 }

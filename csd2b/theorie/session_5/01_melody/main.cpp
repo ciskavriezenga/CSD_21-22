@@ -24,6 +24,7 @@ double mtof(float mPitch)
   // https://www.musicdsp.org/en/latest/Other/125-midi-note-frequency-conversion.html
   return 440.0 * pow(2.0, (mPitch - 57.0f)/12.0f);
 }
+
 void updatePitch(Melody* melody, Square* square) {
   float pitch = melody->getPitch();
   double freq = mtof(pitch);
@@ -59,7 +60,7 @@ int main(int argc,char **argv)
   float amplitude = 0.15;
 
   // keep track of the frameIndex, to play notes at a given frame interval
-  int frameIndex;
+  int frameIndex = 0;
   const int frameInterval = 0.05 * samplerate;
   // start with the first pitch
   updatePitch(&melody, &square);
@@ -77,14 +78,17 @@ int main(int argc,char **argv)
         // reset frameIndex
         frameIndex = 0;
         updatePitch(&melody, &square);
+      } else {
+        // increment frameindex
+        frameIndex++;
       }
 
       // write sample to output
       outBuf[i] = square.getSample() * amplitude;
 
-      // update values: next sample and increment frame index
+      // calculate next sample
       square.tick();
-      frameIndex++;
+
     }
 
     amplitude = 0.5;
