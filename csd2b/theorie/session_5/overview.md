@@ -30,8 +30,7 @@ _EHBS: eerste hulp bij stress_
       * simpel algoritme
       <span style="color: red;">
       </br>HOTSWAP EINDOPDRACHT ...
-      </span>      
-      * adhv user input
+      </span>            
       * _(adhv OSC / MIDI input)_
 
 
