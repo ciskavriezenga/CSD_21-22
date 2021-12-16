@@ -16,3 +16,23 @@ the course CSD2c.
 * #### Observer pattern
   * demonstrate observer pattern with an example
     (SerialManager and AudioManager) from previous cppExamples repository
+
+
+## Pointers
+* #### recap and additional theory
+  * dynamic array allocation
+  * copy object vs copy pointer example of Marc
+  * pointer exercises
+
+
+## Optimalisation
+* #### Faster oscillators
+  * Sine vs 'fast sine'
+  * Saw with additive sines vs 'fast sine'
+
+* #### The processor-memory bottleneck:
+  * explain this bottleneck
+  * caching - how does this work
+    * demo with windows visualisation of the cache project
+
+* #### SIMD 
