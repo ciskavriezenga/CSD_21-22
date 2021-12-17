@@ -13,7 +13,6 @@ Synth::~Synth()
 
 void Synth::tick()
 {
-  std::cout << "• Synth::tick\n";
   calculate();
 }
 
