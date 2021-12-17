@@ -38,6 +38,6 @@ void DetunedSynth::calculate()
 {
   baseOsc->nextSample();
   offsetOsc->nextSample();
-  sample = (baseOsc->getSample() + offsetOsc->getSample()) * 0.5;
+  sample = (baseOsc->getSample() + offsetOsc->getSample()) * 0.1;
 
 }
