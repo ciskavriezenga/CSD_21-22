@@ -1,19 +1,29 @@
 #include "audioManager.h"
 #include "AMSynth.h"
 #include "detunedSynth.h"
+#include "writeToFile.h"
+
+#define WRITE_TO_FILE 0
+
+
 AudioManager::AudioManager() : synth(nullptr)
 {
-  jack = new JackModule();
-  jack->init("example");
-  // call method that handles assignment of onProcess function for
-  // JackModule
-  // TODO - why does the program 'break' when I use cin immediately after
-  // calling init
-  assignAudioCallback();
+#if WRITE_TO_FILE
+  samplerate = 44100;
   // create synth based on user input
   changeSynth();
+  writeToFile();
+#else
+  jack = new JackModule();
+  jack->init("example");
+  samplerate = jack->getSamplerate();
+  // create synth based on user input
+  changeSynth();
+  // call method that handles assignment of onProcess function for JackModule
+  assignAudioCallback();
   // start audio!
   jack->autoConnect();
+#endif
 }
 
 AudioManager::~AudioManager()
@@ -57,8 +67,6 @@ bool AudioManager::changeSynth(SynthType synthType)
   Synth::Waveform waveformType = (Synth::Waveform)
     UIUtilities::retrieveSelectionIndex(waveformOptions, Synth::Waveform::Size);
 
-  const double samplerate = jack->getSamplerate();
-
   switch(synthType) {
     case AMSynthType:
       synth = new AMSynth(samplerate, waveformType);
@@ -89,7 +97,7 @@ void AudioManager::assignAudioCallback()
       if(synth != nullptr) {
         outBuf[i] = synth->getSample();
         // calculate next sample
-        synth->tick();
+        synth->nextSample();
       } else {
         outBuf[i] = 0;
       }
@@ -113,6 +121,16 @@ std::string AudioManager::synthTypeToString(SynthType type)
       return "DetunedSynth";
     default:
       return "Invalid Synth";
+  }
+}
+
+void AudioManager::writeToFile()
+{
+  WriteToFile fileWriter("output.csv", true);
+
+  for(int i = 0; i < 1000; i++) {
+    fileWriter.write(std::to_string(synth->getSample()) + "\n");
+    synth->nextSample();
   }
 }
 

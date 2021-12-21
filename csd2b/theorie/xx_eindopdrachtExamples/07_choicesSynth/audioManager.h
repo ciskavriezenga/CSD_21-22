@@ -30,5 +30,7 @@ protected:
   JackModule* jack;
 
   bool changeSynth(SynthType synthType);
+  void writeToFile();
   void deleteSynth();
+  double samplerate;
 };

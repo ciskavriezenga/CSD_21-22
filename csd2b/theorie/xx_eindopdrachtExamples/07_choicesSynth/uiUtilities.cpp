@@ -29,7 +29,6 @@ std::string UIUtilities::retrieveInput(std::string selectionOptions[],
   // retrieve and return choice
   std::string selection = "";
   std::cin >> selection;
-  std::cout << "******* " << std::endl;
   return selection;
 }
 

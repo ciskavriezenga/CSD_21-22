@@ -14,6 +14,11 @@ public:
     Carrier
   };
   void calculate() override;
+  void setModDepth(double modDepth);
+  void setModFreq(double modFreq);
+  void setFreq(double carFreq);
+  void setAmp(double carAmp);
+
   // setters and getters
 #if 0
   // TODO this is the next step, to also allow user to set waveform per
@@ -27,4 +32,8 @@ public:
 protected:
   Oscillator* modulatorOsc;
   Oscillator* carrierOsc;
+  double modDepth;
+  double modFreq;
+  double carFreq;
+  double carAmp;
 };

@@ -1,6 +1,7 @@
 #include "AMSynth.h"
 
-AMSynth::AMSynth(double samplerate, Waveform oscType) : Synth(samplerate)
+AMSynth::AMSynth(double samplerate, Waveform oscType) : Synth(samplerate),
+  modDepth(0.25), modFreq(50), carFreq(220), carAmp(0.3)
 {
   // using modulatorOsc and carrierOsc instead of creating
   // oscillators dynamically in the constructor
@@ -12,16 +13,16 @@ AMSynth::AMSynth(double samplerate, Waveform oscType) : Synth(samplerate)
   switch (oscType)
   {
     case SineType:
-      modulatorOsc = new Sine(220, samplerate);
-      carrierOsc = new Sine(225, samplerate);
+      modulatorOsc = new Sine(modFreq, samplerate);
+      carrierOsc = new Sine(carFreq, samplerate);
     break;
     case SawType:
-      modulatorOsc = new Saw(220, samplerate);
-      carrierOsc = new Saw(225, samplerate);
+      modulatorOsc = new Saw(modFreq, samplerate);
+      carrierOsc = new Saw(carFreq, samplerate);
     break;
     case SquareType:
-      modulatorOsc = new Square(220, samplerate);
-      carrierOsc = new Square(225, samplerate);
+      modulatorOsc = new Square(modFreq, samplerate);
+      carrierOsc = new Square(carFreq, samplerate);
     break;
   default:
     /* code */
@@ -36,5 +37,27 @@ AMSynth::~AMSynth()
 
 void AMSynth::calculate()
 {
+  modulatorOsc->nextSample();
+  carrierOsc->nextSample();
+  sample = carrierOsc->getSample() * (carAmp + (modulatorOsc->getSample() * modDepth));
+}
 
+void AMSynth::setModDepth(double modDepth)
+{
+  this->modDepth = modDepth;
+}
+
+void AMSynth::setModFreq(double modFreq)
+{
+  this->modFreq = modFreq;
+}
+
+void AMSynth::setFreq(double carFreq)
+{
+  this->carFreq = carFreq;
+}
+
+void AMSynth::setAmp(double carAmp)
+{
+  this->carAmp = carAmp;
 }

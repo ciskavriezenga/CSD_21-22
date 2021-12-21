@@ -11,7 +11,7 @@ Synth::~Synth()
 }
 
 
-void Synth::tick()
+void Synth::nextSample()
 {
   calculate();
 }

@@ -19,7 +19,7 @@ public:
   };
   // setters and getters
 
-  void tick();
+  void nextSample();
   virtual void calculate() = 0;
   double getSample();
 
