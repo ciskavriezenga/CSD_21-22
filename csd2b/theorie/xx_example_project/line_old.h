@@ -7,7 +7,7 @@ class Line : public Generator
 {
 public:
   Line();
-    ~Line();
+  ~Line();
 
   // setters and getters
   void setLine(double sampleEndValue, uint sampleDuration);
