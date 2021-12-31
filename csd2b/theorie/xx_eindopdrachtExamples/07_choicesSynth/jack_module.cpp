@@ -19,7 +19,8 @@ static jack_port_t *input_port,*output_port;
 
 JackModule::JackModule()
 {
-  // assign temp onProces function 
+#if 0
+  // assign temp onProces function
   this->onProcess = [](jack_default_audio_sample_t *inBuf,
     jack_default_audio_sample_t *outBuf, jack_nframes_t nframes) {
 
@@ -30,6 +31,7 @@ JackModule::JackModule()
     }
     return 0;
   };
+#endif
 } // JackModule()
 
 JackModule::~JackModule()
@@ -69,12 +71,6 @@ int JackModule::init(std::string clientName)
   input_port =
     jack_port_register(client,"input",JACK_DEFAULT_AUDIO_TYPE,JackPortIsInput,0);
 
-
-  //Tell the Jack server that the program is ready to start processing audio.
-  if(jack_activate(client)) {
-    std::cout << "Cannot activate client." << std::endl;
-    return -1;
-  } // if
   return 0;
 } // init()
 
@@ -96,6 +92,11 @@ void JackModule::autoConnect()
       << "________________________\n\n";
     exit(1);
   }
+  //Tell the Jack server that the program is ready to start processing audio.
+  if(jack_activate(client)) {
+    std::cout << "Cannot activate client." << std::endl;
+    exit(1);
+  } // if
   /*
    * Try auto-connect our output
    *

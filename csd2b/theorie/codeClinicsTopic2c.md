@@ -35,4 +35,4 @@ the course CSD2c.
   * caching - how does this work
     * demo with windows visualisation of the cache project
 
-* #### SIMD 
+* #### SIMD

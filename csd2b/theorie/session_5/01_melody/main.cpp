@@ -16,8 +16,6 @@
 #define WRITE_TO_FILE 0
 
 
-
-
 double mtof(float mPitch)
 {
   // source of the mtof calculation:
@@ -57,7 +55,7 @@ int main(int argc,char **argv)
   std::cout << "\nWROTE TO FILE = DONE." << std::endl;
 #else
 
-  float amplitude = 0.15;
+  float amplitude = 0.025;
 
   // keep track of the frameIndex, to play notes at a given frame interval
   int frameIndex = 0;
@@ -91,7 +89,6 @@ int main(int argc,char **argv)
 
     }
 
-    amplitude = 0.5;
     return 0;
   };
 
