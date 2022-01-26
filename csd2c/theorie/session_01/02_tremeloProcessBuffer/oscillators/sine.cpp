@@ -5,7 +5,7 @@
 Sine::Sine() : Sine(0, 0)
 {}
 
-Sine::Sine(double frequency, double samplerate) :
+Sine::Sine(float frequency, float samplerate) :
   Oscillator(frequency, samplerate)
 {
   std::cout << "Sine - constructor\n";
