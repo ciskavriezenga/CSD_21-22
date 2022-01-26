@@ -1,4 +1,4 @@
-# Overview CSD 2c
+# Overview CSD 2c 
 |   | Theorie                             |Code clinics               |
 |---|---|---|
 | 1 | Introductie, terugblik, tremolo     |Crcular buffer             |
