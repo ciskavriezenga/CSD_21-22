@@ -1,7 +1,7 @@
-# Overview CSD 2c 
+# Overview CSD 2c
 |   | Theorie                             |Code clinics               |
 |---|---|---|
-| 1 | Introductie, terugblik, tremolo     |Crcular buffer             |
+| 1 | Introductie, terugblik, tremolo     |Circular buffer             |
 | 2 | Effect base class, delay            |Interpolatie               |
 | 3 | Multi-threading en synchronisatie   |Interleaved & stereo audio |
 | 4 | Computer Vision                     |Threads                    |
