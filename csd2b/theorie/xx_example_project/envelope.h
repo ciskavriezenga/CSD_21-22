@@ -4,11 +4,12 @@
  * by F. Vriezenga, dec 2021
  */
 
+#include "generator.h"
 
 class Envelope : public Generator {
 
 public:
-  Envelope(Clock clock, double* ampValues, double* durValues,
+  Envelope(Clock* clock, double* ampValues, double* durValues,
     int numValues);
   virtual ~Envelope();
 

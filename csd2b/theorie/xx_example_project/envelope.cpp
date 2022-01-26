@@ -3,7 +3,7 @@
 
 
 
-Envelope::Evelope(Clock clock, double* ampValues, double* durValues,
+Envelope::Envelope(Clock* clock, double* ampValues, double* durValues,
   int numValues) {
     this.ampValues = ampValues;
     this.durValues = durValues;
@@ -20,6 +20,7 @@ Envelope::~Envelope() {
 //____________ PUBLIC METHODS ____________
 void Envelope::Tick()
 {
+
 	//if envelope is running
 	if (currentIndex != -1) {
 		//increment phase

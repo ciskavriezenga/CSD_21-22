@@ -1,11 +1,14 @@
 #include "saw.h"
 #define OUTPUT_SAWWAVE 1
 #define SAW_SMOOTH_FACTOR 10.0f
+
 //Constructors and destructor
 Saw::Saw(Clock &clock) : Saw(clock, 0, 0) {}
 
 Saw::Saw(Clock &clock, double frequency) :
-  Saw(clock, frequency, 0.5, 0) {}
+  Saw(clock, frequency, 0.5, 0) {
+    this->frequency(10)
+  }
 
 Saw::Saw(Clock &clock, double frequency, double amplitude) :
   Saw(clock, frequency, amplitude, 0) {}

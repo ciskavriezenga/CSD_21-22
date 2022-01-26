@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -I/usr/local/include -Wall -std=c++14
 LDFLAGS= -ljack
-SOURCE= writeToFile.o generator.o oscillator.o sine.o saw.o jack_module.o main.o
+SOURCE= writeToFile.o generator.o oscillator.o sine.o saw.o jack_module.o line.o envelope.o main.o
 all: example
 
 example : $(SOURCE)
