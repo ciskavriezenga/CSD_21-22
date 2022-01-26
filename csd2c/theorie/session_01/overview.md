@@ -28,4 +28,10 @@ Werk de volgende classes uit
   * Delay (met circular buffer als losse class _(has a relationship)_ of circular buffer functionaliteit rechtstreeks in de class zelf), met:
     * instelbare feedback signaal
     * met instelbare dry en wet
+    * instelbare delay tijd in samples
+    * instelbare delay tijd in (m)seconden
+
+    ##### *Voor die-diehards*
+      * bij het aanpassen van de delay tijd wordt de aanpassing over een gegeven aantal samples uitgesmeerd. In andere woorden, er wordt niet van de ene plek naar de andere plek in de buffer 'gesprongen' met de read head, maar de read head beweegt langzaam naar de nieuwe positie gedurende een gegeven aantal samples.
+
   * Tremolo
