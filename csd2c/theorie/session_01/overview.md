@@ -31,7 +31,7 @@ Werk de volgende classes uit
     * instelbare delay tijd in samples
     * instelbare delay tijd in (m)seconden
 
-    ##### *Voor die-diehards*
+    ##### *Voor diehards*
       * bij het aanpassen van de delay tijd wordt de aanpassing over een gegeven aantal samples uitgesmeerd. In andere woorden, er wordt niet van de ene plek naar de andere plek in de buffer 'gesprongen' met de read head, maar de read head beweegt langzaam naar de nieuwe positie gedurende een gegeven aantal samples.
 
   * Tremolo
