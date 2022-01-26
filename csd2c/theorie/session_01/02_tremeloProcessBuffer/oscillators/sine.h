@@ -8,7 +8,7 @@ class Sine : public Oscillator
 public:
   //Constructor and destructor
   Sine();
-  Sine(float frequency, float samplerate);
+  Sine(double frequency, double samplerate);
   ~Sine();
 
 private:

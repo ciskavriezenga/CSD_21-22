@@ -4,7 +4,7 @@
 Square::Square() : Square(0, 0)
 {}
 
-Square::Square(float frequency, float samplerate) :
+Square::Square(double frequency, double samplerate) :
   Oscillator(frequency, samplerate)
 {
   std::cout << "Square - constructor\n";

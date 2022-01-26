@@ -6,7 +6,7 @@
 Saw::Saw() : Saw(0, 0)
 {}
 
-Saw::Saw(float frequency, float samplerate) :
+Saw::Saw(double frequency, double samplerate) :
   Oscillator(frequency, samplerate),
   phaseIncrement(frequency / samplerate * SAW_SMOOTH_FACTOR),
   smoothY(0)

@@ -1,6 +1,6 @@
 #include "oscillator.h"
 
-Oscillator::Oscillator(float frequency, float samplerate) :
+Oscillator::Oscillator(double frequency, double samplerate) :
   frequency(frequency), amplitude(1.0), phase(0), sample(0),
   samplerate(samplerate)
   {
@@ -9,13 +9,16 @@ Oscillator::Oscillator(float frequency, float samplerate) :
 
 Oscillator::~Oscillator() {}
 
-void Oscillator::initialize(float samplerate)
+void Oscillator::initialize(double samplerate)
 {
   this->samplerate = samplerate;
 }
 
-// generates and returns the next sample
-float Oscillator::genNextSample() {
+double Oscillator::getSample() {
+  return sample;
+}
+
+void Oscillator::tick() {
   // NOTE - frequency / SAMPLERATE can be implemented in a more efficient way
   phase += frequency / samplerate;
 
@@ -24,25 +27,16 @@ float Oscillator::genNextSample() {
 
   // let subclasses calculate the next sample
   calcNextSample();
-
-  // return the newly generated sample
-  return sample;
 }
 
-// ---- getters and setters -----
-
-// returns current sample
-float Oscillator::getSample() {
-  return sample;
-}
-
-void Oscillator::setFrequency(float frequency)
+//getters and setters
+void Oscillator::setFrequency(double frequency)
 {
   // TODO add check to see if parameter is valid
   this->frequency = frequency;
 }
 
-float Oscillator::getFrequency()
+double Oscillator::getFrequency()
 {
   return frequency;
 }
