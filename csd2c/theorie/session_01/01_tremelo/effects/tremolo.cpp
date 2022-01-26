@@ -6,9 +6,8 @@
 Tremolo::Tremolo(float samplerate, float modDepth, float modFreq,
       WaveformType waveformType) : modDepth(modDepth)
 {
-  osc = new Sine(modFreq, samplerate);
   // instantiate the oscillator, depending on the passed waveform type
-  /*switch (waveformType) {
+  switch (waveformType) {
   case WaveformType::SINE:
   {
     osc = new Sine(modFreq, samplerate);
@@ -19,14 +18,16 @@ Tremolo::Tremolo(float samplerate, float modDepth, float modFreq,
     osc = new Saw(modFreq, samplerate);
     break;
   }
-case WaveformType::SQUARE:
+  case WaveformType::SQUARE:
   {
+    // TODO: alter calculation of to create a non-aliasing square,
+    // similar to the calculation within the Saw class
     osc = new Square(modFreq, samplerate);
     break;
   }
   default:
     break;
-  }*/
+  }
 }
 
 Tremolo::~Tremolo()
@@ -39,10 +40,11 @@ Tremolo::~Tremolo()
 void Tremolo::process(float* inbuf, float* outbuf, int numFrames)
 {
   float modSignal = 0;
+
   // apply Tremolo effect to inbuf values and store result in outbuf
   for(int i = 0; i < numFrames; i++) {
     // transform sine in range [-1, 1] to range [0, 1]
-    modSignal = osc->getSample() * 0.5 + 1.0;
+    modSignal = osc->getSample() * 0.5 + 0.5;
     // apply modDepth
     modSignal *= modDepth;
     modSignal += 1.0 - modDepth;
