@@ -1,0 +1,56 @@
+
+# Code Clinic 2.
+
+#### Overview CSD 2c
+|   | Theorie                             |Code clinics               |
+|---|---|---|
+| 1 | Introductie, terugblik, tremolo     |Circular buffer            |
+| 2 | Effect base class, delay            |Interpolatie               |
+| 3 | Multi-threading en synchronisatie   |Interleaved & stereo audio |
+| 4 | Computer Vision                     |Threads                    |
+| 5 | Music Information Retrieval (MIR)   |Git branching              |
+| 6 | Bela en sensoren                    |Feedback sessie            |
+| 7 | Snippets en tests van eindopdracht  |Make & subfolers, STL      |
+| 8 | Eindpresentatie                     |Ontwerpproces              |
+
+
+
+## CC2 - Interpolatie
+* functionaliteit
+  https://en.wikipedia.org/wiki/Interpolation
+  https://en.wikipedia.org/wiki/Linear_interpolation
+  _en zie afbeelding_
+* wanneer nodig in M&T context?
+
+## CC2 - Opdracht
+Maak een static Interpolation class met de volgende functies, gebruik hierbij floats als datatype:
+* `nnMap(value, low, high)`
+  _returns the nearest-neighbour value of the passed value within the given range_
+    * value: a normalized value within range [0, 1]
+    * low: the lower bound of the range
+    * high: the upper bound of the range
+
+* `linMap(value, low, high)`
+  _returns the linearly interpolated value of the passed value within the given range_
+    * value: a normalized value within range [0, 1]
+    * low: the lower bound of the range
+    * high: the upper bound of the range
+
+* `mapInRange(value, fromLow, fromHigh, fromLow, fromHigh)`
+  _returns the mapped value from one range to another_
+    * value: value: the value to map
+    * fromLow: the lower bound of the value’s current range.
+    * fromHigh: the upper bound of the value’s current range.
+    * toLow: the lower bound of the value’s target range.
+    * toHigh: the upper bound of the value’s target range.
+
+
+##### *Voor diehards*
+* Werk met templates ipv float datatypes, zodat je ongeacht je data type (float, double, ...) de functies kunt gebruiken. https://en.cppreference.com/w/cpp/language/templates
+
+##### *Voor die-...-diehards*
+* `splineMap(value, ... )`
+    *returns the interpolated value of the passed value within the given range, according to Cox-de Boor recursion. See: boorSplines.png, b i,3 (t) and https://en.wikipedia.org/wiki/De_Boor%27s_algorithm*
+    Je kunt eventueel ook naar de _Boost_ library kijken, daar wordt ook spline interpolatie aangeboden _(=not verified yet)_
+    * value: a normalized value within range [0, 1]
+    * ...
