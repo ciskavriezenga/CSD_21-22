@@ -2,24 +2,40 @@ CXX= g++
 CXXFLAGS = -I/usr/local/include -Wall -std=c++1z
 LDFLAGS=-ljack
 
-MODULES := ../../../sharedCode/oscillators ../../../sharedCode/utilities effects
-SRC=
+SHAREDCODE_PATH = ../../../sharedCode/
+MODULES = oscillators utilities
+# append shared code path prefix to modules
+MODULE_PATHS = $(addprefix $(SHAREDCODE_PATH),$(MODULES))
+# log MODULE_PATHS
+$(info $$MODULE_PATHS is [${MODULE_PATHS}])
+
+# module .mk files
+MODULE_MK = $(patsubst %,%/module.mk,$(MODULE_PATHS))
+# log MODULE_MK
+$(info $$MODULE_MK is [${MODULE_MK}])
+
 # include the description for each module
-include $(patsubst %,%/module.mk,$(MODULES))
-SRC+= main.cpp
+SRC_MODULES =
+include $(MODULE_MK)
+# log SRC_MODULES
+$(info $$SRC_MODULES is [${SRC_MODULES}])
+
+# create src list for all .cpp files
+SRC = $(addprefix $(SHAREDCODE_PATH),$(SRC_MODULES))
+SRC+= tremolo.cpp main.cpp
+# log SRC
+$(info $$SRC is [${SRC}])
+
 # look for include files in
 # each of the modules
-CXXFLAGS += $(patsubst %,-I%,./$(MODULES))
+CXXFLAGS += $(patsubst %,-I%,./$(MODULE_PATHS))
 
 # determine the object files --> replace all .cpp in SRC with .o
 OBJ := $(patsubst %.cpp,%.o, $(filter %.cpp,$(SRC)))
-
-# log SRC and OBJ
-$(info $$SRC is [${SRC}])
+# log OBJ
 $(info $$OBJ is [${OBJ}])
 
 TARGET=example
-
 # link the program
 $(TARGET):$(OBJ)
 	$(CXX) -o $@ $(OBJ) $(LDFLAGS)

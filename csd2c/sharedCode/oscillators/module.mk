@@ -1,1 +1,1 @@
-SRC += oscillators/saw.cpp oscillators/square.cpp oscillators/sine.cpp oscillators/oscillator.cpp
+SRC_MODULES += $(patsubst %,oscillators/%, saw.cpp square.cpp sine.cpp oscillator.cpp)
