@@ -1,1 +1,0 @@
-SRC += utilities/writeToFile.cpp

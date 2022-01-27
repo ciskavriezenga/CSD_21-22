@@ -15,4 +15,7 @@ int main() {
   for(int i = 0; i < BUFFER_SIZE; i++) {
     fileWriter.write(std::to_string(wavetable[i]) + "\n");
   }
+
+  std::cout << "\n***** DONE ***** "
+    << "\nOutput is written to file output.csv" << std::endl;
 }
