@@ -26,6 +26,7 @@ Tremolo::Tremolo(float samplerate, float modDepth, float modFreq,
     break;
   }
   default:
+    throw "Tremelo::Tremelo - incorrect waveformType.";
     break;
   }
 }
