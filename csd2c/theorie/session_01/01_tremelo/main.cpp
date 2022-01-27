@@ -31,7 +31,7 @@ int main(int argc,char **argv)
   Tremolo tremolo(samplerate);
 
 #if WRITE_TO_FILE
-  WriteToFile fileWriter("data/output.csv", true);
+  WriteToFile fileWriter("output.csv", true);
   // assign a function to the JackModule::onProces
   jack.onProcess = [&amplitude, &tremolo, &fileWriter](jack_default_audio_sample_t* inBuf,
     jack_default_audio_sample_t* outBuf, jack_nframes_t nframes) {

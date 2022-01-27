@@ -2,7 +2,7 @@ CXX= g++
 CXXFLAGS = -I/usr/local/include -Wall -std=c++1z
 LDFLAGS=-ljack
 
-MODULES := oscillators utilities effects
+MODULES := ../../../sharedCode/oscillators ../../../sharedCode/utilities effects
 SRC=
 # include the description for each module
 include $(patsubst %,%/module.mk,$(MODULES))
