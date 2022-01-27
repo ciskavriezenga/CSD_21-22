@@ -5,7 +5,8 @@ import csv
 
 # create a list and import data from output.csv file
 data = list()
-with open('data/output.csv', 'r') as file:
+# TODO - pass filepath as argument 
+with open('output.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
         data.append(float(row[0]))

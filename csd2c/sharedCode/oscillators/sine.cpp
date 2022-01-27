@@ -5,15 +5,10 @@
 Sine::Sine() : Sine(0, 0)
 {}
 
-Sine::Sine(double frequency, double samplerate) :
-  Oscillator(frequency, samplerate)
-{
-  std::cout << "Sine - constructor\n";
-}
+Sine::Sine(float frequency, float samplerate) :
+  Oscillator(frequency, samplerate) {}
 
-Sine::~Sine() {
-  std::cout << "Sine - destructor\n";
-}
+Sine::~Sine() {}
 
 void Sine::calcNextSample()
 {

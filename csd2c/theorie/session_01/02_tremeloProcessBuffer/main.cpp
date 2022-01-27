@@ -26,6 +26,11 @@ int main(int argc,char **argv)
   jack.init(argv[0]);
   float samplerate = jack.getSamplerate();
   float amplitude = 0.5;
+  // create processbuffer that we can pass on to tremolo, init to 0
+  float* procBuf = new float[samplerate];
+  for(int i = 0; i < samplerate; i++) {
+    procBuf[i] = 0;
+  }
 
   // instantiate tremolo effect
   Tremolo tremolo(samplerate);
@@ -33,20 +38,22 @@ int main(int argc,char **argv)
 #if WRITE_TO_FILE
   WriteToFile fileWriter("output.csv", true);
   // assign a function to the JackModule::onProces
-  jack.onProcess = [&amplitude, &tremolo, &fileWriter](jack_default_audio_sample_t* inBuf,
+  jack.onProcess = [&procBuf, &amplitude, &tremolo, &fileWriter](jack_default_audio_sample_t* inBuf,
     jack_default_audio_sample_t* outBuf, jack_nframes_t nframes) {
 #else
   // assign a function to the JackModule::onProces
-  jack.onProcess = [&amplitude, &tremolo](jack_default_audio_sample_t* inBuf,
+  jack.onProcess = [&procBuf, &amplitude, &tremolo](jack_default_audio_sample_t* inBuf,
     jack_default_audio_sample_t* outBuf, jack_nframes_t nframes) {
 #endif
+
+    tremolo.process(inBuf, procBuf, nframes);
+    // copy result to outBuf with given amplitude
     for(unsigned int i = 0; i < nframes; i++) {
-      outBuf[i] = tremolo.processFrame(inBuf[i]) * amplitude;
       // ----- write result to file -----
 #if WRITE_TO_FILE
       static int count = 0;
       if(count < WRITE_NUM_SAMPLES) {
-        fileWriter.write(std::to_string(outBuf[i]) + "\n");
+        fileWriter.write(std::to_string(procBuf[i] * amplitude ) + "\n");
       } else {
         // log 'Done' message to console, only once
         static bool loggedDone = false;
@@ -58,8 +65,9 @@ int main(int argc,char **argv)
         }
       }
       count++;
-      // set output to 0 to prevent issues with output
-      outBuf[i] = 0;
+#else
+      // ----- write result to output buffer -----
+      outBuf[i] = procBuf[i] * amplitude;
 #endif
     }
 

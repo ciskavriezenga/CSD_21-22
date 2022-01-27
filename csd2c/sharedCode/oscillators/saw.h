@@ -8,20 +8,20 @@ class Saw : public Oscillator
 public:
   //Constructor and destructor
   Saw();
-  Saw(double frequency, double samplerate);
+  Saw(float frequency, float samplerate);
   ~Saw();
 
 private:
   // calculate the next sample according to saw calculation
   void calcNextSample() override;
 
-  // ---- values used to calculate the saw wave ---- 
+  // ---- values used to calculate the saw wave ----
   //phase increment
-  const double phaseIncrement;
+  const float phaseIncrement;
   // value used for smoothing the transition from -1 to 1
-  double smoothY;
+  float smoothY;
   //wrapped phase
-  double wPhase;
+  float wPhase;
 };
 
 #endif
