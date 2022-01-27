@@ -44,5 +44,9 @@ $(TARGET):$(OBJ)
 .cpp.o:
 	$(CXX) -c $< $(CXXFLAGS) -o $*.o
 
+plot:
+	python3 $(SHAREDCODE_PATH)utilities/plot.py
+	
 clean:
-	rm -f $(TARGET) *.o ./*/*.o
+	rm $(TARGET)
+	rm $(OBJ)

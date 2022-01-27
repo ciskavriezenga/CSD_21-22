@@ -1,7 +1,7 @@
 CXX= g++
 CXXFLAGS = -I/usr/local/include -Wall -std=c++1z
 LDFLAGS=-ljack
-SRC_PROJECT = tremolo.cpp main.cpp 
+SRC_PROJECT = tremolo.cpp main.cpp
 SHAREDCODE_PATH = ../../../sharedCode/
 MODULES = oscillators utilities
 # append shared code path prefix to modules
@@ -44,5 +44,9 @@ $(TARGET):$(OBJ)
 .cpp.o:
 	$(CXX) -c $< $(CXXFLAGS) -o $*.o
 
+plot:
+	python3 $(SHAREDCODE_PATH)utilities/plot.py
+
 clean:
-	rm -f $(TARGET) *.o ./*/*.o
+	rm $(TARGET)
+	rm $(OBJ)
