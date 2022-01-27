@@ -1,7 +1,7 @@
 CXX= g++
 CXXFLAGS = -I/usr/local/include -Wall -std=c++1z
 LDFLAGS=-ljack
-SRC_PROJECT = interpolation.cpp main.cpp
+SRC_PROJECT = main.cpp
 SHAREDCODE_PATH = ../../../sharedCode/
 MODULES = utilities
 # append shared code path prefix to modules

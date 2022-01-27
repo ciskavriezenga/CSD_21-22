@@ -1,5 +1,4 @@
 #include <iostream>
-#include "interpolation.h"
 #include "writeToFile.h"
 
 #define BUFFER_SIZE 10
