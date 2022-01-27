@@ -1,1 +1,1 @@
-SRC += utilities/writeToFile.cpp utilities/jack_module.cpp
+SRC_MODULES += $(patsubst %,utilities/%, writeToFile.cpp jack_module.cpp)

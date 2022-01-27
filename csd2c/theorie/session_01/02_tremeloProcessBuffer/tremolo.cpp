@@ -44,14 +44,12 @@ void Tremolo::process(float* inbuf, float* outbuf, int numFrames)
   // apply Tremolo effect to inbuf values and store result in outbuf
   for(int i = 0; i < numFrames; i++) {
     // transform sine in range [-1, 1] to range [0, 1]
-    modSignal = osc->getSample() * 0.5 + 0.5;
+    modSignal = osc->genNextSample() * 0.5 + 0.5;
     // apply modDepth
     modSignal *= modDepth;
     modSignal += 1.0 - modDepth;
     // apply modulation signal to input
     outbuf[i] = inbuf[i] * modSignal;
-    // update sine sample
-    osc->tick();
   }
 }
 
