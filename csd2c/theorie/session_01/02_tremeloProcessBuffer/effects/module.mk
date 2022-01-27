@@ -1,0 +1,1 @@
+SRC += effects/tremolo.cpp
