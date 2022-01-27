@@ -2,7 +2,7 @@
 #include <thread>
 #include "writeToFile.h"
 #include "circBuffer.h"
-#include "sine.h"
+#include "square.h"
 
 #define SAMPLERATE 44100
 
@@ -15,19 +15,17 @@ int main(int argc,char **argv)
 
   circBuffer.logAllSettings();
 
-  Sine sine(freq, SAMPLERATE);
+  Square square(freq, SAMPLERATE);
   WriteToFile fileWriter("output.csv", true);
 
   // generate 200 samples
   // write sum of output of both the sine directly and the circBuffer to a file
   float sineSample = 0;
   for(int i = 0; i < 200; i++) {
-    sineSample = sine.getSample();
+    sineSample = square.genNextSample();
     circBuffer.write(sineSample);
     std::cout << circBuffer.read();
     fileWriter.write(std::to_string(sineSample + circBuffer.read()) + "\n");
-    // go to next sample
-    sine.tick();
     circBuffer.tick();
   }
 
