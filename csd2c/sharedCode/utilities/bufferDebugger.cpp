@@ -1,11 +1,12 @@
-#include "writeToFile"
+#include "bufferDebugger.h"
+#include "writeToFile.h"
 
 // logs first n values in the buffer to the console
 void BufferDebugger::logBegin(float* buffer, uint bufSize, uint nFrames)
 {
   // validate nFrames
   if(nFrames > bufSize) {
-    throw exception("BufferDebugger::logBegin - nFrames exceeds size of the buffer.");
+    throw "BufferDebugger::logBegin - nFrames exceeds size of the buffer.";
   }
   logRange(buffer, bufSize, 0, nFrames);
 }
@@ -14,7 +15,7 @@ void BufferDebugger::logBegin(float* buffer, uint bufSize, uint nFrames)
 void BufferDebugger::logEnd(float* buffer, uint bufSize, uint nFrames)
 {
   if(nFrames > bufSize) {
-    throw exception("BufferDebugger::logEnd - nFrames exceeds size of the buffer.");
+    throw "BufferDebugger::logEnd - nFrames exceeds size of the buffer.";
   }
   logRange(buffer, bufSize, bufSize - nFrames, bufSize);
 }
@@ -25,10 +26,10 @@ void BufferDebugger::logRange(float* buffer, uint bufSize, uint startIndex,
 {
   // validate range
   if(startIndex >= bufSize) {
-    throw exception("BufferDebugger::logRange - startIndex exceeds size of the buffer.");
+    throw "BufferDebugger::logRange - startIndex exceeds size of the buffer.";
   }
   if(endIndex > bufSize) {
-    throw exception("BufferDebugger::logRange - endIndex exceeds size of the buffer.");
+    throw "BufferDebugger::logRange - endIndex exceeds size of the buffer.";
   }
   // NOTE: endIndex is exclusive
   std::cout << "\n";
@@ -59,6 +60,6 @@ void BufferDebugger::writeToFileRange(float* buffer, int bufSize, int startIndex
   // endIndex is exclusive
   WriteToFile fileWriter(filePath, true);
   for(int i = startIndex; i < endIndex; i++) {
-    fileWriter.write(std::to_string(wavetable[i]) + "\n");
+    fileWriter.write(std::to_string(buffer[i]) + "\n");
   }
 }
