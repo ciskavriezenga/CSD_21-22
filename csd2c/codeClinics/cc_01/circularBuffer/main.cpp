@@ -20,12 +20,12 @@ int main(int argc,char **argv)
 
   // generate 200 samples
   // write sum of output of both the sine directly and the circBuffer to a file
-  float sineSample = 0;
+  float squareSample = 0;
   for(int i = 0; i < 200; i++) {
-    sineSample = square.genNextSample();
-    circBuffer.write(sineSample);
+    squareSample = square.genNextSample();
+    circBuffer.write(squareSample);
     std::cout << circBuffer.read();
-    fileWriter.write(std::to_string(sineSample + circBuffer.read()) + "\n");
+    fileWriter.write(std::to_string(squareSample + circBuffer.read()) + "\n");
     circBuffer.tick();
   }
 
