@@ -1,6 +1,7 @@
 #pragma once
 #include "effect.h"
-#include "circBuffer.h"
+
+typedef unsigned int uint;
 
 class Delay : public Effect
 {
