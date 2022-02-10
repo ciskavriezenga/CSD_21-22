@@ -2,7 +2,7 @@
 #include <thread>
 #include "writeToFile.h"
 #include "circBuffer.h"
-#include "sine.h"
+#include "square.h"
 
 #define SAMPLERATE 44100
 
@@ -13,28 +13,24 @@ int main(int argc,char **argv)
   // set delay to approximately a quarter cycle
   CircBuffer circBuffer(200, 12);
 
-  circBuffer.logAllSettings();
-
-  Sine sine(freq, SAMPLERATE);
+  Square square(freq, SAMPLERATE);
   WriteToFile fileWriter("output.csv", true);
 
   // generate 200 samples
   // write sum of output of both the sine directly and the circBuffer to a file
-  float sineSample = 0;
+  float squareSample = 0;
   for(int i = 0; i < 200; i++) {
-    sineSample = sine.getSample();
-    circBuffer.write(sineSample);
+    squareSample = square.genNextSample();
+    circBuffer.write(squareSample);
     std::cout << circBuffer.read();
-    fileWriter.write(std::to_string(sineSample + circBuffer.read()) + "\n");
-    // go to next sample
-    sine.tick();
+    fileWriter.write(std::to_string(squareSample + circBuffer.read()) + "\n");
     circBuffer.tick();
   }
 
   std::cout << "\n***** DONE ***** "
     << "\nWrote the sum of the a sine oscillator and a "
     << "delayed value to output.csv." << std::endl;
-
+#endif
   //end the program
   return 0;
 

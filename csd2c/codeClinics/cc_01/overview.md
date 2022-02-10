@@ -30,13 +30,13 @@ https://en.wikipedia.org/wiki/Circular_buffer
 ## CC1 - Opdracht
 * Maak een CircBuffer class die voldoet aan de volgende voorwaarden:
   * De constructor format is:
-    ```CircBuffer(uint size, uint numSamplesDelay)```
+    ```CircBuffer(int size, int numSamplesDelay)```
   * Het aantal samples verschil tussen de read head en write head is aan te passen
-* Gebruik de CircBuffer met een signaal dat je invoert en uitleest, schrijf de output weg naar een file met de WriteToFile class uit blok 2c. Gebruik hiervoor bijvoorbeeld een Sine object uit het vorige blok. 
+* Gebruik de CircBuffer met een signaal dat je invoert en uitleest, schrijf de output weg naar een file met de WriteToFile class uit blok 2c. Gebruik hiervoor bijvoorbeeld een Sine object uit het vorige blok.
 
 
 ##### *Voor diehards*
-* de class CircBuffer bevat een functie ```resetSize(uint size)```, waarmee de buffer size aan te passen is.
+* de class CircBuffer bevat een functie ```resetSize(int size)```, waarmee de buffer size aan te passen is.
 
 ##### *Voor die-diehards*
 * bij het aanpassen van het aantal samples tussen de read en write head wordt de aanpassing over een gegeven aantal samples uitgesmeerd. In andere woorden, er wordt niet van de ene plek naar de andere plek in de buffer 'gesprongen' met de read head, maar de read head beweegt langzaam naar de nieuwe positie gedurende een gegeven aantal samples.
