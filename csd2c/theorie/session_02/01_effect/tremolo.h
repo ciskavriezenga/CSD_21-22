@@ -18,7 +18,7 @@ public:
 
   // override base class method
   // applies tremolo effect to the input frame
-  float applyEffect(float input) override;
+  void applyEffect(float& input, float& output) override;
 
 
   // set the frequency of the tremolo

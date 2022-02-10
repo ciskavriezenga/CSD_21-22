@@ -24,17 +24,15 @@ Delay::~Delay()
 }
 
 // override base class method
-// applies tremolo effect to the input frame
-float Delay::applyEffect(float input)
+// applies delay effect to the input frame and stores it to the output frame
+void Delay::applyEffect(float& input, float& output)
 {
   // read value from circular buffer and increment readH
-  m_delayedValue = m_buffer[m_readH++];
+  output = m_buffer[m_readH++];
   wrapH(m_readH);
   // write value to circular buffer
-  m_buffer[m_writeH++] = m_delayedValue * m_feedback + input;
+  m_buffer[m_writeH++] = output * m_feedback + input;
   wrapH(m_writeH);
-  // return output of the delay;
-  return m_delayedValue;
 }
 
 // sets the number of samples to delay

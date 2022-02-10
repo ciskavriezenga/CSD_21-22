@@ -7,13 +7,15 @@ class FastSine : public Oscillator
 {
 public:
   //Constructor and destructor
-  FastSine();
   FastSine(float frequency, float samplerate);
   ~FastSine();
 
 private:
   // calculate the next sample according to fast sine calculation
   void calcNextSample() override;
+  // hide default constructor
+  FastSine() : Oscillator(0,0){};
+  float tempPhase;
 };
 
 #endif

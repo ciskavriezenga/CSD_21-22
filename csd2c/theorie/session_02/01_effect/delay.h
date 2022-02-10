@@ -11,8 +11,8 @@ public:
   ~Delay();
 
   // override base class method
-  // applies delay effect to the input frame
-  float applyEffect(float input) override;
+  // applies delay effect to the input frame and stores it to the output frame
+  void applyEffect(float& input, float& output) override;
 
   // sets the number of samples to delay
   void setNumDelaySamples(uint numDelaySamples);
@@ -24,7 +24,6 @@ private:
   }
 
   float m_feedback = 0.0f;
-  float m_delayedValue = 0.0f;
 
   // circular buffer variables
   // pointer to the buffer

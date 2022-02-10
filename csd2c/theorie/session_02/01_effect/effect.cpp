@@ -8,11 +8,13 @@ Effect::Effect(float dryWet) {
 Effect::~Effect() {}
 
 // process frame
-float Effect::processFrame(float input)
+void Effect::processFrame(float& input, float& output)
 {
   // TODO - add bypass functionality
-  m_sample = input * wetDry + applyEffect(input) * dryWet;
-  return m_sample;
+  applyEffect(input, output);
+  output = input * wetDry + output * dryWet;
+  // cache output sample
+  m_sample = output;
 }
 
 // returns the last outputted sample

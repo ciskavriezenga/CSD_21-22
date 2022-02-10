@@ -12,7 +12,7 @@ public:
   virtual ~Effect();
 
   // process frame
-  float processFrame(float input);
+  void processFrame(float& input, float& output);
   // returns the last outputted sample
   float getSample();
 
@@ -20,7 +20,7 @@ public:
 
 protected:
   // pure virtual method
-  virtual float applyEffect(float input) = 0;
+  virtual void applyEffect(float& input, float& output) = 0;
 
 private:
   // balance between dry and wet signal

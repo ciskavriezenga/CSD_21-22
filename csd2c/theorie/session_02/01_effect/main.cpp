@@ -14,7 +14,7 @@
  * jackd -d coreaudio
  */
 
-#define WRITE_TO_FILE 0
+#define WRITE_TO_FILE 1
 #define WRITE_NUM_SAMPLES 44100
 
 int main(int argc,char **argv)
@@ -30,6 +30,7 @@ int main(int argc,char **argv)
 
   // instantiate tremolo effect
   Tremolo tremolo(samplerate);
+  // Delay constructor args: feedback, numDelaySamples, maxDelaySize, dryWet
   Delay delay(0.5, WRITE_NUM_SAMPLES / 4.0, WRITE_NUM_SAMPLES, 0.5);
 
 #if WRITE_TO_FILE
@@ -43,9 +44,10 @@ int main(int argc,char **argv)
     jack_default_audio_sample_t* outBuf, jack_nframes_t nframes) {
 #endif
     for(unsigned int i = 0; i < nframes; i++) {
-      outBuf[i] = tremolo.processFrame(inBuf[i]);
-      outBuf[i] = delay.processFrame(outBuf[i]);
-      outBuf[i] *= amplitude;
+      tremolo.processFrame(inBuf[i], outBuf[i]);
+      // use inBuf as output location
+      delay.processFrame(outBuf[i], inBuf[i]);
+      outBuf[i] = inBuf[i] * amplitude;
 
       // ----- write result to file -----
 #if WRITE_TO_FILE

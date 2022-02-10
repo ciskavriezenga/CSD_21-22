@@ -39,7 +39,7 @@ Tremolo::~Tremolo()
   m_osc = nullptr;
 }
 
-float Tremolo::applyEffect(float input)
+void Tremolo::applyEffect(float& input, float& output)
 {
   // transform sine in range [-1, 1] to range [0, 1]
   m_modSignal  = m_osc->genNextSample() * 0.5 + 0.5;
@@ -47,7 +47,7 @@ float Tremolo::applyEffect(float input)
   m_modSignal *= m_modDepth;
   m_modSignal += 1.0 - m_modDepth;
   // apply modulation signal to input and return result
-  return input * m_modSignal;
+  output = input * m_modSignal;
 }
 
 void Tremolo::setModFreq(float modFreq)

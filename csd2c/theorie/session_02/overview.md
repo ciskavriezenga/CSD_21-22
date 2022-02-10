@@ -15,6 +15,21 @@
 
 ## Effect base class, delay
 
+* Effect base class
+  * Which methods and fields can we place in the effect base class?
+
+  * let's use 'pass by references' for the `processFrame`
+
+        float processFrame(float input);        
+        void processFrame(float* input, float* output);
+        void processFrame(float& input, float& output);
+
+    * also see: https://www.agner.org/optimize/optimizing_cpp.pdf
+
+
+
+
+
 ## Opdrachten komende 3 weken - overzicht
 week 1. Effect (base class), Delay, Tremolo classes
 week 2. WaveShaper, presentatie voorbereiden - *presentatie theorie sessie week 3*
