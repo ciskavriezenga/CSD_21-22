@@ -11,10 +11,10 @@ using namespace cv;
 void logValues(uchar* &m, uint wStart, uint hStart, uint wEnd, uint hEnd) {
   std::cout << "\n________________ Values in matrix _________________\n";
   // iterate through array and log values
-  for(uint i = hStart; i < hEnd; i++) {
-    int yOffset = i * W;
-    for(uint j = wStart; j < wEnd; j++) {
-      std::cout << (int) m[j + yOffset] << ", ";
+  for(uint j = hStart; j < hEnd; j++) {
+    int yOffset = j * W;
+    for(uint i = wStart; i < wEnd; i++) {
+      std::cout << (int) m[i + yOffset] << ", ";
     }
     std::cout << "\n";
   }
@@ -25,11 +25,11 @@ void logValues(uchar* &m, uint wStart, uint hStart, uint wEnd, uint hEnd) {
 void logValues(Mat &m, uint wStart, uint hStart, uint wEnd, uint hEnd) {
   std::cout << "\n________________ Values in matrix _________________\n";
   // iterate through array and log values
-  for(uint i = hStart; i < hEnd; i++) {
-    const uchar* row = m.ptr<uchar>(i);
-    for(uint j = wStart; j < wEnd; j++) {
+  for(uint j = hStart; j < hEnd; j++) {
+    const uchar* row = m.ptr<uchar>(j);
+    for(uint i = wStart; i < wEnd; i++) {
       // using the pointer is more efficient then using m.at<uint>(i, j)
-      std::cout << (int) row[j] << ", ";
+      std::cout << (int) row[i] << ", ";
     }
     std::cout << "\n";
   }
