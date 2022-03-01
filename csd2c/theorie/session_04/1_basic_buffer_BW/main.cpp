@@ -33,6 +33,7 @@ void logValues(Mat &m, uint wStart, uint hStart, uint wEnd, uint hEnd) {
     }
     std::cout << "\n";
   }
+
   std::cout << "\n___________________________________________________\n";
 }
 
@@ -50,11 +51,14 @@ int main( int argc, char **argv ){
 
   #else
     // loop through bytes
-    for(int i = 0; i < H; i++) {
-      int yOffset = i * W;
+    for(int j = 0; j < H; j++) {
+      int yOffset = j * W;
       std::cout << "\n";
-      for(int j = 0; j < W; j++) {
-        buffer[j + yOffset] = (uchar)(255.0f * (float)(i + 1)/ H * (float)(j + 1) / W);
+      for(int i = 0; i < W; i++) {
+        //percentages in range [0,1]
+        float yPercentage = (float)(j + 1) / H;
+        float xPercentage =  (float)(i + 1) / W;
+        buffer[i + yOffset] = (uchar)(255.0f * yPercentage  * xPercentage);
       }
     }
   #endif
